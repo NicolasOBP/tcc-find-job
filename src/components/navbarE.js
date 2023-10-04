@@ -55,8 +55,8 @@ export default function NavbarE(props) {
     setSelecFilter((old) => {
       const alreadyExists = old.includes(v);
 
-      if (alreadyExists == true) {
-        const index = old.findIndex((valor) => valor == v);
+      if (alreadyExists === true) {
+        const index = old.findIndex((valor) => valor === v);
         old.splice(index, 1);
         return [...old];
       }
@@ -179,7 +179,7 @@ export default function NavbarE(props) {
                       )}
                     </Menu.Items>
                   </Menu>
-                  {selecFilter == "" ? (
+                  {selecFilter === "" ? (
                     <></>
                   ) : (
                     <RiCloseCircleLine

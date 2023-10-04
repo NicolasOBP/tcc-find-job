@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import SuasVag from "../../components/suasV";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import NavbarE from "../../components/navbarE";
 
 export default function SuasV() {

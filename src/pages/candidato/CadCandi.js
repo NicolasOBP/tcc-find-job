@@ -276,21 +276,21 @@ export default function CadCandi() {
   async function cad(ev) {
     ev.preventDefault();
     if (
-      nomeC == "" ||
-      emailC == "" ||
-      senhaC == "" ||
+      nomeC === "" ||
+      emailC === "" ||
+      senhaC === "" ||
       telC.length < 15 ||
       cpfC.length < 14 ||
-      dataC == "" ||
-      esco == "" ||
-      area == "" ||
-      genC == ""
+      dataC === "" ||
+      esco === "" ||
+      area === "" ||
+      genC === ""
     ) {
       setContModal("Preencha todos os campos");
       setShowBtn(true);
       setModal(true);
     } else {
-      if (senhaC == confsenhaC) {
+      if (senhaC === confsenhaC) {
         try {
           const dupli = await verificaCPF();
           if (dupli === false) {
@@ -346,7 +346,6 @@ export default function CadCandi() {
       }
     }
   }
-  let i = 1;
   return (
     <form onSubmit={(ev) => cad(ev)}>
       <Modal1 btn={showBtn} cont={conteModal} open={modal} setM={setModal} />
@@ -457,7 +456,7 @@ export default function CadCandi() {
                       </option>
                       {Object.values(v).map(
                         (b) =>
-                          ["ETECs", "Fatecs"].includes(b) == false && (
+                          ["ETECs", "Fatecs"].includes(b) === false && (
                             <option>{b}</option>
                           )
                       )}

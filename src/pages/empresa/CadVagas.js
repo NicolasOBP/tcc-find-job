@@ -99,18 +99,18 @@ export default function CadVagas() {
 
   async function cadV() {
     if (
-      tituloV == "" ||
-      modeloV == "" ||
-      numeroV == "" ||
-      benefV == "" ||
-      localV == "" ||
-      descV == "" ||
-      areaV == "" ||
-      cargaI == "" ||
-      cargaF == "" ||
-      sal == "" ||
-      reqV == "" ||
-      imgV == ""
+      tituloV === "" ||
+      modeloV === "" ||
+      numeroV === "" ||
+      benefV === "" ||
+      localV === "" ||
+      descV === "" ||
+      areaV === "" ||
+      cargaI === "" ||
+      cargaF === "" ||
+      sal === "" ||
+      reqV === "" ||
+      imgV === ""
     ) {
       setContModal("Preencha todos os campos");
       setShowBtn(true);
@@ -154,18 +154,18 @@ export default function CadVagas() {
   }
   async function atuaV() {
     if (
-      tituloV == "" ||
-      modeloV == "" ||
-      numeroV == "" ||
-      benefV == "" ||
-      localV == "" ||
-      descV == "" ||
-      areaV == "" ||
-      cargaI == "" ||
-      cargaF == "" ||
-      sal == "" ||
-      reqV == "" ||
-      imgV == ""
+      tituloV === "" ||
+      modeloV === "" ||
+      numeroV === "" ||
+      benefV === "" ||
+      localV === "" ||
+      descV === "" ||
+      areaV === "" ||
+      cargaI === "" ||
+      cargaF === "" ||
+      sal === "" ||
+      reqV === "" ||
+      imgV === ""
     ) {
       setContModal("Preencha todos os campos");
       setShowBtn(true);
@@ -302,7 +302,8 @@ export default function CadVagas() {
           <div className="sm:col-span-2">
             {imgV ? (
               <label className="block text-md font-bold leading-6 text-black-900">
-                Atualizar logo da empresa ou uma imagem que represente o trabalho
+                Atualizar logo da empresa ou uma imagem que represente o
+                trabalho
               </label>
             ) : (
               <label className="block text-md font-bold leading-6 text-black-900">

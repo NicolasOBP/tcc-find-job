@@ -31,7 +31,7 @@ export default function Vagascards() {
   const cole = collection(db, "tb04_vaga");
 
   useEffect(() => {
-    selecFilter == "" ? getVagasSF() : getVagasCF();
+    selecFilter === "" ? getVagasSF() : getVagasCF();
   }, [selecFilter]);
 
   function removerRepeticoes(array) {
@@ -114,7 +114,11 @@ export default function Vagascards() {
           dadosV.map((v) => (
             <div key={i++} className="p-2">
               <div className="p-5 flex shadow-xl rounded-xl w-full m-5 h-full max-w-xs max-h-xs grid w-80 border-2  shadow-xl border-gray-300">
-                <img src={v.imageURl} className="w-auto h-auto rounded" />
+                <img
+                  alt="a"
+                  src={v.imageURl}
+                  className="w-auto h-auto rounded"
+                />
                 <div className="flex flex-col font-bold space-y-2">
                   <h1 className="text-center mb-4 font-bold">{v.tituloV}</h1>
                   <h2>Salário: R${v.sal},00</h2>

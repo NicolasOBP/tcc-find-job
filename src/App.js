@@ -28,7 +28,7 @@ export default function App() {
         </div>
         <div className="flex justify-evenly opacity-90 bg-slate-50 border-blue-900 p-8 border-2 rounded-xl mb-6 shadow-xl drop-shadow-2xl">
           <div>
-            <img className="rounded" src={alunos} />
+            <img className="rounded" src={alunos} alt="A" />
           </div>
           <div
             className="flex flex-col justify-center items-center"
@@ -65,13 +65,13 @@ export default function App() {
             </h3>
           </div>
           <div>
-            <img className="rounded" src={empresa} />
+            <img alt="a" className="rounded" src={empresa} />
           </div>
         </div>
 
         <div className="flex justify-evenly opacity-90 bg-slate-50 border-blue-900 p-8 border-2 rounded-xl mb-6 shadow-xl drop-shadow-2xl">
           <div>
-            <img className="rounded h-60" src={prof} />
+            <img alt="a" className="rounded h-60" src={prof} />
           </div>
           <div
             className="flex flex-col justify-center items-center"
@@ -96,7 +96,7 @@ export default function App() {
               Cadastre-se já!
             </Link>
           </h1>
-          <img className="h-20 w-20 rounded-lg mt-2" src={img1} />
+          <img alt="a" className="h-20 w-20 rounded-lg mt-2" src={img1} />
         </div>
       </div>
     </div>

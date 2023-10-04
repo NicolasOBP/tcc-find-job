@@ -3,7 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { Input2, Input3 } from "../components/input";
 import { Dados } from "../context/context";
 import InputMask from "react-input-mask";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase/config";
 import NavbarE from "../components/navbarE";
@@ -11,7 +11,6 @@ import Modal1 from "../components/modals";
 
 export default function PerfilCandiShowE() {
   const [modal, setModal] = useState(false);
-  const [conteModal, setContModal] = useState("");
 
   const [dadosComent, setDadosComent] = useState([]);
 

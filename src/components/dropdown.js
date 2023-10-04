@@ -31,8 +31,8 @@ export function DropBox(props) {
     props.set((old) => {
       const alreadyExists = old.includes(v);
 
-      if (alreadyExists == true) {
-        const index = old.findIndex((valor) => valor == v);
+      if (alreadyExists === true) {
+        const index = old.findIndex((valor) => valor === v);
         old.splice(index, 1);
         console.log(props.get);
         return [...old];

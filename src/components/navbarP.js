@@ -150,7 +150,7 @@ export default function NavbarP(props) {
                       )}
                     </Menu.Items>
                   </Menu>
-                  {selecFilter == "" ? (
+                  {selecFilter === "" ? (
                     <></>
                   ) : (
                     <RiCloseCircleLine

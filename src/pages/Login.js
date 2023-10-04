@@ -39,7 +39,10 @@ export default function Login() {
         }, 1000);
       } else {
         if (userLocalStorage.tipo === "P") {
-          setContModal("Bem vindo de volta " + userLocalStorage.nomeP.split(" ").slice(0, 1));
+          setContModal(
+            "Bem vindo de volta " +
+              userLocalStorage.nomeP.split(" ").slice(0, 1)
+          );
           setShowBtn(false);
           setModal(true);
 
@@ -49,7 +52,10 @@ export default function Login() {
           }, 1000);
         } else {
           if (userLocalStorage.tipo === "C") {
-            setContModal("Bem vindo de volta " + userLocalStorage.nomeC.split(" ").slice(0, 1));
+            setContModal(
+              "Bem vindo de volta " +
+                userLocalStorage.nomeC.split(" ").slice(0, 1)
+            );
             setShowBtn(false);
             setModal(true);
 
@@ -279,7 +285,7 @@ export default function Login() {
   async function getDadosE(uid) {
     const docRef = doc(db, "tb03_empresa", uid);
     const docSnap = await getDoc(docRef);
-    if (docSnap.exists() == true) {
+    if (docSnap.exists() === true) {
       setDados(docSnap.data());
       localStorage.setItem(
         "user",
@@ -292,7 +298,7 @@ export default function Login() {
   async function getDadosP(uid) {
     const docRef = doc(db, "tb08_professor", uid);
     const docSnap = await getDoc(docRef);
-    if (docSnap.exists() == true) {
+    if (docSnap.exists() === true) {
       setDados(docSnap.data());
       localStorage.setItem("user", JSON.stringify(docSnap.data()));
 
@@ -307,10 +313,6 @@ export default function Login() {
       .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
-
-        const u1 = await getDadosC(user.uid);
-        const u2 = await getDadosE(user.uid);
-        const u3 = await getDadosP(user.uid);
       })
       .catch((err) => {
         const errorCode = err.code;
