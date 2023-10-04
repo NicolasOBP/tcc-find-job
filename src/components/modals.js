@@ -36,6 +36,7 @@ export default function Modal1(props) {
 
       setTimeout(() => {
         props.setM(false);
+        props.auta(true);
       }, 2000);
     } else {
       await deleteDoc(doc(db, "tb04_vaga", props.nome));

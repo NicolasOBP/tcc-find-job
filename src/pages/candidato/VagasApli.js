@@ -15,6 +15,8 @@ export default function VagasApli() {
 
   const [dadosV, setDadosV] = useState([]);
 
+  const [atualiza, setAtualiza] = useState(false);
+
   let snapshotUsers = [];
 
   useEffect(() => {
@@ -32,11 +34,12 @@ export default function VagasApli() {
       alert("Não pode acessar essa página");
       navigate("/");
     }
-  }, []);
+  }, [atualiza]);
 
   const navigate = useNavigate();
 
   async function getVaga(dados) {
+    setAtualiza(false);
     try {
       const q = query(
         collection(db, "tb07_vagasApli"),
@@ -80,6 +83,7 @@ export default function VagasApli() {
             contDel={"Deletar Vaga"}
             nome={id}
             apli={true}
+            atua={setAtualiza}
           />
 
           {dadosV.map((v) => (
