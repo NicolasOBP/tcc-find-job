@@ -8,7 +8,7 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth, db } from "../firebase/config";
-import { Input1 } from "../components/input";
+import { Input1, Input2 } from "../components/input";
 import Modal1 from "../components/modals";
 import { useEffect } from "react";
 
@@ -346,7 +346,7 @@ export default function Login() {
             placeh="Coloque seu email"
           />
 
-          <Input1
+          <Input2
             get={senhaL}
             set={setSenha}
             nomeLabel="Senha"
