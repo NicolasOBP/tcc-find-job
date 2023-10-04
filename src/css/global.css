@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.textcolor {
+  color: rgb(13, 2, 136);
+}
+.textcolor:hover {
+  color: rgb(25, 12, 161);
+}
+
+.botao {
+  background-color: rgb(25, 12, 161);
+}
+
+.caixa {
+  border-radius: 50px;
+  background: #ffffff;
+  box-shadow: 18px 18px 36px #666666, -18px -18px 36px #ffffff;
+}
+
+.comentario {
+  overflow: auto;
+}
+.comentario::-webkit-scrollbar {
+  display: none;
+}

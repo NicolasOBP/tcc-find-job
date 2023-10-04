@@ -1,0 +1,7 @@
+.caixaSelec {
+  border-color: rgb(25, 12, 161);
+  transition-duration: 0.2s;
+}
+.caixaSelec:hover {
+  background-color: rgba(13, 2, 136, 0.3);
+}
