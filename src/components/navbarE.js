@@ -22,6 +22,7 @@ export default function NavbarE(props) {
   const { selecFilter } = useContext(Dados);
   const { setSelecFilter } = useContext(Dados);
   const { filter } = useContext(Dados);
+  console.log(filter);
 
   const { dados } = useContext(Dados);
 
@@ -154,12 +155,10 @@ export default function NavbarE(props) {
                       <span>Filtrar</span>
                       <BsSearch className="h-6 w-6 ml-1" />
                     </Menu.Button>
-                    <Menu.Items className=" absolute right-0 z-10 mt-2 w-auto origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className=" absolute right-0 z-10 mt-2 w-60 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       {filter.length ? (
-                        <h1>Não </h1>
-                      ) : (
                         filter.flat().map((v) => (
-                          <div className="w-40 py-2 hover:bg-gray-100">
+                          <div className="w-auto py-2 hover:bg-gray-100">
                             <Menu.Item key={i++}>
                               <>
                                 <input
@@ -176,10 +175,12 @@ export default function NavbarE(props) {
                             </Menu.Item>
                           </div>
                         ))
+                      ) : (
+                        <h1>Não há filtros</h1>
                       )}
                     </Menu.Items>
                   </Menu>
-                  {selecFilter === "" ? (
+                  {selecFilter == "" ? (
                     <></>
                   ) : (
                     <RiCloseCircleLine

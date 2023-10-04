@@ -69,19 +69,20 @@ export default function VagasApli() {
   return (
     <div>
       <NavbarC perf={true} />
-      <div className="flex justify-content-center justify-center px-6 py-14 lg:px-8">
-        <Modal1
-          setCont={setContModal}
-          open={modal}
-          setM={setModal}
-          cont={conteModal}
-          conf={true}
-          contDel={"Deletar Vaga"}
-          nome={id}
-          apli={true}
-        />
-        {dadosV.length >= 1 ? (
-          dadosV.map((v) => (
+      {dadosV.length >= 1 ? (
+        <div className="flex flex-1 flex-col min-h-full px-6 py-14 lg:px-8">
+          <Modal1
+            setCont={setContModal}
+            open={modal}
+            setM={setModal}
+            cont={conteModal}
+            conf={true}
+            contDel={"Deletar Vaga"}
+            nome={id}
+            apli={true}
+          />
+
+          {dadosV.map((v) => (
             <table className="border-2 border-black">
               <tr className="text-xl">
                 <th className="rounded-full border-2 border-black">Vaga</th>
@@ -105,11 +106,13 @@ export default function VagasApli() {
                 </td>
               </tr>
             </table>
-          ))
-        ) : (
+          ))}
+        </div>
+      ) : (
+        <div className="flex justify-center px-6 py-14 lg:px-8">
           <Nvaga title={"Não há nenhuma vaga aplicdada no momento"} />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

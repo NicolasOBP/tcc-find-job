@@ -31,7 +31,7 @@ export default function Vagascards() {
   const cole = collection(db, "tb04_vaga");
 
   useEffect(() => {
-    selecFilter === "" ? getVagasSF() : getVagasCF();
+    selecFilter == "" ? getVagasSF() : getVagasCF();
   }, [selecFilter]);
 
   function removerRepeticoes(array) {

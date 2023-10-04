@@ -194,11 +194,11 @@ export default function NavbarC(props) {
                           </Menu.Item>
                         ))
                       ) : (
-                        <h1>Não </h1>
+                        <h1>Não há filtros</h1>
                       )}
                     </Menu.Items>
                   </Menu>
-                  {selecFilter === "" ? (
+                  {selecFilter == "" ? (
                     <></>
                   ) : (
                     <RiCloseCircleLine

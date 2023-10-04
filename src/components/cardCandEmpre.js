@@ -12,14 +12,13 @@ export default function CardCandEmpre() {
   const { setFilter } = useContext(Dados);
 
   const { selecFilter } = useContext(Dados);
-  console.log("Filtro SeleciondadoCard => ", selecFilter);
 
   let snapshotUsers = [];
 
   useEffect(() => {
     const userLocalStorage = JSON.parse(localStorage.getItem("user"));
 
-    selecFilter === ""
+    selecFilter == ""
       ? getCandiSF(userLocalStorage)
       : getCandiCF(userLocalStorage);
   }, [selecFilter]);

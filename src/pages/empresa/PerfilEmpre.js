@@ -28,8 +28,6 @@ export default function PerfilEmpre() {
   const [ende, setEnde] = useState(dados.ende);
   const [desc, setDesc] = useState(dados.descE);
 
-  console.log(dados);
-
   useEffect(() => {
     const userLocalStorage = JSON.parse(localStorage.getItem("user"));
     console.log(userLocalStorage);
