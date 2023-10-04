@@ -313,6 +313,10 @@ export default function Login() {
       .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
+
+        const u1 = await getDadosC(user.uid);
+        const u2 = await getDadosE(user.uid);
+        const u3 = await getDadosP(user.uid);
       })
       .catch((err) => {
         const errorCode = err.code;
