@@ -1,19 +1,7 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import { useState, useContext } from "react";
-import { Disclosure, Menu } from "@headlessui/react";
+import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Logo2 from "../imgs/findjobcopia.png";
-import { Link, useNavigate } from "react-router-dom";
-import { BsSearch } from "react-icons/bs";
-import Cadcurriculo from "./cadCurriculo";
-import Modal1 from "./modals";
-import { auth } from "../firebase/config";
-import { Dados } from "../context/context";
-import { IoPersonCircleSharp } from "react-icons/io5";
-import { RiCloseCircleLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");

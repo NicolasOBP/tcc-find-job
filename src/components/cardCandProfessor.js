@@ -24,7 +24,7 @@ export default function CardCandProfessor() {
   const { selecFilter } = useContext(Dados);
 
   useEffect(() => {
-    selecFilter == "" ? getCandiSF() : getCandiCF();
+    selecFilter === "" ? getCandiSF() : getCandiCF();
   }, [selecFilter]);
 
   function removerRepeticoes(array) {
@@ -89,7 +89,7 @@ export default function CardCandProfessor() {
 
             <div className="flex-1 ">
               <h2 className="text-sm font-bold leading-9 text-black-900">
-                Nome: {v.nomeC.split(' ').slice(0, 2).join(' ')}
+                Nome: {v.nomeC.split(" ").slice(0, 2).join(" ")}
               </h2>
 
               <h3 className="text-sm font-bold leading-9 text-black-900">

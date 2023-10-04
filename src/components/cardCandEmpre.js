@@ -10,7 +10,6 @@ export default function CardCandEmpre() {
   const [dadosV, setDadosV] = useState([]);
 
   const { setFilter } = useContext(Dados);
-  const { filter } = useContext(Dados);
 
   const { selecFilter } = useContext(Dados);
   console.log("Filtro SeleciondadoCard => ", selecFilter);
@@ -20,7 +19,7 @@ export default function CardCandEmpre() {
   useEffect(() => {
     const userLocalStorage = JSON.parse(localStorage.getItem("user"));
 
-    selecFilter == ""
+    selecFilter === ""
       ? getCandiSF(userLocalStorage)
       : getCandiCF(userLocalStorage);
   }, [selecFilter]);
@@ -41,8 +40,6 @@ export default function CardCandEmpre() {
       querySnapshot.forEach((doc) => snapshotUsers.push(doc.data()));
 
       setDadosV(snapshotUsers);
-      let i = 0;
-      let a = 0;
 
       setFilter(() => {
         const semrepetir = Object.values(snapshotUsers).map((v) => v.areaCandi);
@@ -94,7 +91,7 @@ export default function CardCandEmpre() {
 
             <div className="flex-1 ">
               <h2 className="text-sm font-bold leading-9 text-black-900">
-                Nome: {v.nomeCand.split(' ').slice(0, 2).join(' ')}
+                Nome: {v.nomeCand.split(" ").slice(0, 2).join(" ")}
               </h2>
 
               <h3 className="text-sm font-bold leading-9 text-black-900">
@@ -119,7 +116,9 @@ export default function CardCandEmpre() {
         ))
       ) : (
         <div className="flex w-screen justify-center">
-          <Nvaga title={"Não há nenhum candidato que enviou o curículo para vaga"} />
+          <Nvaga
+            title={"Não há nenhum candidato que enviou o curículo para vaga"}
+          />
         </div>
       )}
     </div>

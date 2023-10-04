@@ -4,7 +4,7 @@ import { Dados } from "../context/context";
 import Modal1 from "./modals";
 import { DropBox } from "./dropdown";
 import { FaUserCircle } from "react-icons/fa";
-import { addDoc, doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { Input3 } from "./input";
 
@@ -33,7 +33,7 @@ export default function AdComentario(props) {
   }
 
   async function adComent() {
-    if (habili.length == 0 || coment == "") {
+    if (habili.length === 0 || coment === "") {
       console.log(habili);
       setContModal("Informação faltando");
       setShowBtn(true);
