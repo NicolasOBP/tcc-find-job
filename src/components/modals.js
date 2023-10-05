@@ -26,6 +26,9 @@ export default function Modal1(props) {
     await updateDoc(doc(db, "tb01_candidato", dados.uid), {
       curriculo: "",
     });
+
+    props.setConfDel(false);
+
     atualizaDados();
     props.setCont("Curriculo deletado");
     setTimeout(() => {

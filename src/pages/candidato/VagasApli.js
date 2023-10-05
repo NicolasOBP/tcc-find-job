@@ -87,18 +87,18 @@ export default function VagasApli() {
           />
 
           {dadosV.map((v) => (
-            <table className="border-2 border-black">
-              <tr className="text-xl">
-                <th className="rounded-full border-2 border-black">Vaga</th>
-                <th className="border-2 border-black">Área da vaga</th>
-                <th className="border-2 border-black">Excluir</th>
+            <table>
+              <tr className="text-xl ">
+                <th className="border-4 border-black">Vaga</th>
+                <th className="border-4 border-black">Área da vaga</th>
+                <th className="border-4 border-black">Excluir</th>
               </tr>
 
-              <tr key={i++} className="border-2 rounded border-blue-950">
-                <td className="border-2 rounded border-blue-950 text-center text-lg">
+              <tr key={i++} className="border-4 border-gray-500">
+                <td className="border-4 border-gray-500 text-center text-lg">
                   {v.tituloV}
                 </td>
-                <td className="border-2 rounded border-blue-950 text-center text-lg">
+                <td className="border-4 border-gray-500 text-center text-lg">
                   {v.areaV}
                 </td>
                 <td className="p-2 flex justify-evenly">
