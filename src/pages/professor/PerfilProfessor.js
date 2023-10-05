@@ -15,6 +15,10 @@ export default function PerfilProfessor() {
   const [modal, setModal] = useState(false);
   const [conteModal, setContModal] = useState("");
 
+  const [confDel, setConfDel] = useState(false);
+  const [contDel, setContDel] = useState("");
+  const [delImg, setDelImg] = useState(false);
+
   const [modalA, setModalA] = useState(false);
   const [conteModalA, setContModalA] = useState("");
   const [showBtn, setShowBtn] = useState(false);
@@ -86,6 +90,14 @@ export default function PerfilProfessor() {
     atualizaDados();
   }
 
+  function deletaImg() {
+    setContModalA("Tem certeza que deseja remover sua imagem de perfil?");
+    setContDel("Deletar imagem");
+    setDelImg(true);
+    setConfDel(true);
+    setModalA(true);
+  }
+
   return (
     <div>
       <NavbarP logout={true} />
@@ -98,9 +110,21 @@ export default function PerfilProfessor() {
         setM={setModal}
         prof={true}
       />
-      <Modal1 cont={conteModalA} open={modalA} setM={setModalA} btn={showBtn} />
+      <Modal1
+        cont={conteModalA}
+        setCont={setContModalA}
+        open={modalA}
+        setM={setModalA}
+        btn={showBtn}
+        conf={confDel}
+        delImg={delImg}
+        setDelImg={setDelImg}
+        contDel={contDel}
+        setConfDel={setConfDel}
+        prof
+      />
       <div className="flex h-screen min-h-full flex-1 flex-col items-center lg:px-8">
-        <div className="flex flex-row -space-x-2 overflow-hidden mb-2">
+        <div className="flex overflow-hidden mb-2">
           <label htmlFor="file-input">
             {dados.perfilimg ? (
               <img
@@ -124,6 +148,16 @@ export default function PerfilProfessor() {
             className="hidden"
           />
         </div>
+        {dados.perfilimg ? (
+          <button
+            onClick={deletaImg}
+            className="rounded-xl mb-6 text-center px-3 py-3 font-semibold text-lg text-purple border border-4 border-blue-900 shadow-md transition-colors duration-300 hover:bg-indigo-100"
+          >
+            Remover foto
+          </button>
+        ) : (
+          <></>
+        )}
         <div className="bg-gray-200 rounded-xl flex flex-col shadow-xl">
           <div className=" p-2 grid grid-cols-1 gap-x-6 sm:grid-cols-6">
             <Input2

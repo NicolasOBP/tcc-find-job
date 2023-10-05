@@ -9,12 +9,17 @@ export default function Modal1(props) {
   const { setDados } = useContext(Dados);
 
   async function atualizaDados() {
-    const docRef = doc(db, "tb01_candidato", dados.uid);
-    const docSnap = await getDoc(docRef);
-
-    setDados(docSnap.data());
-
-    localStorage.setItem("user", JSON.stringify(docSnap.data()));
+    if (props.prof) {
+      const docRef = doc(db, "tb08_professor", dados.uid);
+      const docSnap = await getDoc(docRef);
+      setDados(docSnap.data());
+      localStorage.setItem("user", JSON.stringify(docSnap.data()));
+    } else {
+      const docRef = doc(db, "tb01_candidato", dados.uid);
+      const docSnap = await getDoc(docRef);
+      setDados(docSnap.data());
+      localStorage.setItem("user", JSON.stringify(docSnap.data()));
+    }
   }
 
   async function deletaCurri() {
@@ -24,6 +29,27 @@ export default function Modal1(props) {
     atualizaDados();
     props.setCont("Curriculo deletado");
     setTimeout(() => {
+      props.setM(false);
+    }, 2000);
+  }
+
+  async function deletaImg() {
+    if (props.prof) {
+      await updateDoc(doc(db, "tb08_professor", dados.uid), {
+        perfilimg: "",
+      });
+    } else {
+      await updateDoc(doc(db, "tb01_candidato", dados.uid), {
+        perfilimg: "",
+      });
+    }
+
+    props.setConfDel(false);
+
+    atualizaDados();
+    props.setCont("Imagem deletada");
+    setTimeout(() => {
+      props.setDelImg(false);
       props.setM(false);
     }, 2000);
   }
@@ -94,7 +120,13 @@ export default function Modal1(props) {
                     <div className="flex justify-center space-x-5 m-3">
                       <button
                         className="rounded p-2 border-2 font-semibold border-blue-950"
-                        onClick={props.deletaCurri ? deletaCurri : deletaVaga}
+                        onClick={
+                          props.delImg
+                            ? deletaImg
+                            : props.deletaCurri
+                            ? deletaCurri
+                            : deletaVaga
+                        }
                       >
                         {props.contDel}
                       </button>

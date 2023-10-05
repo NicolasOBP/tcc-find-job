@@ -24,6 +24,9 @@ export default function PerfilCandidato() {
   const [conteModalCu, setContModalCu] = useState("");
   const [showBtn, setShowBtn] = useState(false);
   const [confDel, setConfDel] = useState(false);
+  const [contDel, setContDel] = useState("");
+
+  const [delImg, setDelImg] = useState(false);
 
   const [modal, setModal] = useState(false);
   const [conteModal, setContModal] = useState("");
@@ -88,8 +91,17 @@ export default function PerfilCandidato() {
     setModalCu(true);
   }
 
-  async function deletaCurr() {
+  function deletaCurr() {
     setContModalCu("Tem certeza que deseja deletar seu currículo atual?");
+    setContDel("Deletar currículo");
+    setConfDel(true);
+    setModalCu(true);
+  }
+
+  function deletaImg() {
+    setContModalCu("Tem certeza que deseja remover sua imagem de perfil?");
+    setContDel("Deletar imagem");
+    setDelImg(true);
     setConfDel(true);
     setModalCu(true);
   }
@@ -107,28 +119,35 @@ export default function PerfilCandidato() {
     await cadImg(event.target.files[0]);
   }
   async function cadImg(img) {
-    if (!img) {
+    setConfDel(false);
+    try {
+      if (!img) {
+        setContModalCu("Escolha um arquivo");
+        setShowBtn(true);
+        setModalCu(true);
+      }
+
+      const storageRef = ref(storage, `/files/${img.name}`);
+      setContModalCu("Carregando");
+      setModalCu(true);
+      const uploadTask = await uploadBytesResumable(storageRef, img);
+
+      let imageURL = await getDownloadURL(storageRef);
+
+      await updateDoc(doc(db, "tb01_candidato", dados.uid), {
+        perfilimg: imageURL,
+      });
+
+      setContModalCu("Imagem inserida");
+      setShowBtn(true);
+      setModalCu(true);
+
+      atualizaDados();
+    } catch (e) {
       setContModalCu("Escolha um arquivo");
       setShowBtn(true);
       setModalCu(true);
     }
-
-    const storageRef = ref(storage, `/files/${img.name}`);
-    setContModalCu("Carregando");
-    setModalCu(true);
-    const uploadTask = await uploadBytesResumable(storageRef, img);
-
-    let imageURL = await getDownloadURL(storageRef);
-
-    await updateDoc(doc(db, "tb01_candidato", dados.uid), {
-      perfilimg: imageURL,
-    });
-
-    setContModalCu("Imagem inserida");
-    setShowBtn(true);
-    setModalCu(true);
-
-    atualizaDados();
   }
 
   let i = 0;
@@ -154,11 +173,14 @@ export default function PerfilCandidato() {
         setM={setModalCu}
         conf={confDel}
         btn={showBtn}
-        contDel={"Deletar Currículo"}
+        contDel={contDel}
         deletaCurri
+        delImg={delImg}
+        setConfDel={setConfDel}
+        setDelImg={setDelImg}
       />
       <div className="flex min-h-full flex-1 flex-col items-center lg:px-8">
-        <div className="flex flex-col items-center -space-x-2 overflow-hidden">
+        <div className="flex flex-col items-center">
           <label htmlFor="file-input">
             {dados.perfilimg ? (
               <img
@@ -182,29 +204,41 @@ export default function PerfilCandidato() {
             className="hidden"
           />
 
-          <div className="flex flex-col justify-center">
-            {dados.curriculo ? (
-              <div className="flex items-center">
-                <a
-                  href={dados.curriculo}
-                  target="blank"
-                  className=" rounded-xl text-center px-3 py-3 font-semibold text-lg text-purple border border-2 border-blue-900 shadow-md"
+          <div className="flex justify-center">
+            <div className="mr-6">
+              {dados.curriculo ? (
+                <div className="flex items-center">
+                  <a
+                    href={dados.curriculo}
+                    target="blank"
+                    className="rounded-xl text-center px-3 py-3 font-semibold text-lg text-purple border border-4 border-blue-900 shadow-md transition-colors duration-300 hover:bg-indigo-100"
+                  >
+                    Seu currículo
+                  </a>
+                  <FaRegTrashAlt
+                    onClick={deletaCurr}
+                    className="text-red-800"
+                    style={{ width: "3rem", height: "3rem", cursor: "pointer" }}
+                  />
+                </div>
+              ) : (
+                <button
+                  onClick={verifCurri}
+                  className="rounded-xl text-center px-3 py-3 font-semibold text-lg text-purple border border-4 border-blue-900 shadow-md transition-colors duration-300 hover:bg-indigo-100"
                 >
                   Seu currículo
-                </a>
-                <FaRegTrashAlt
-                  onClick={deletaCurr}
-                  className="text-red-800 ml-4"
-                  style={{ width: "3rem", height: "3rem", cursor: "pointer" }}
-                />
-              </div>
-            ) : (
+                </button>
+              )}
+            </div>
+            {dados.perfilimg ? (
               <button
-                onClick={verifCurri}
+                onClick={deletaImg}
                 className="rounded-xl text-center px-3 py-3 font-semibold text-lg text-purple border border-4 border-blue-900 shadow-md transition-colors duration-300 hover:bg-indigo-100"
               >
-                Seu currículo
+                Remover foto
               </button>
+            ) : (
+              <></>
             )}
           </div>
         </div>
