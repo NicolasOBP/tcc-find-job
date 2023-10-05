@@ -116,7 +116,7 @@ export default function CardCandEmpre() {
       ) : (
         <div className="flex w-screen justify-center">
           <Nvaga
-            title={"Não há nenhum candidato que enviou o curículo para vaga"}
+            title={"Não há nenhum candidato que enviou o currículo para vaga"}
           />
         </div>
       )}

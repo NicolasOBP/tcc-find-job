@@ -99,7 +99,7 @@ export default function Vagascards() {
       });
 
       setContModal(
-        'Curriculo enviado. Caso clicou sem querer, vá até as "Vagas Aplciadas" e delete a vaga aplicada'
+        'Curriculo enviado. Caso clicou sem querer, vá até as "Vagas Aplicadas" e delete a vaga aplicada'
       );
       setShowBtn(true);
       setModal1(true);

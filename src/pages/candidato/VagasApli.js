@@ -83,7 +83,7 @@ export default function VagasApli() {
             contDel={"Deletar Vaga"}
             nome={id}
             apli={true}
-            atua={setAtualiza}
+            auta={setAtualiza}
           />
 
           {dadosV.map((v) => (
@@ -114,7 +114,7 @@ export default function VagasApli() {
         </div>
       ) : (
         <div className="flex justify-center px-6 py-14 lg:px-8">
-          <Nvaga title={"Não há nenhuma vaga aplicdada no momento"} />
+          <Nvaga title={"Não há nenhuma vaga aplicada no momento"} />
         </div>
       )}
     </div>
