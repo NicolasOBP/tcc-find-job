@@ -24,7 +24,7 @@ export default function CardCandProfessor() {
   const { selecFilter } = useContext(Dados);
 
   useEffect(() => {
-    selecFilter === "" ? getCandiSF() : getCandiCF();
+    selecFilter == "" ? getCandiSF() : getCandiCF();
   }, [selecFilter]);
 
   function removerRepeticoes(array) {
