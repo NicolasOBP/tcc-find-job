@@ -12,11 +12,11 @@ export default function Home() {
       if (userLocalStorage.tipo == "C") {
       } else {
         alert("Não pode acessar essa página");
-        navigate("/");
+        navigate("/central");
       }
     } catch (e) {
       alert("Não pode acessar essa página");
-      navigate("/");
+      navigate("/central");
     }
   }, []);
 

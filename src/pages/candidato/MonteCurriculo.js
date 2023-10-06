@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavbarC from "../../components/navbar";
 import Videoscurri from "../../components/vídeoscurri";
 
 export default function MonteCurriculo() {
+  useEffect(() => {
+    const userLocalStorage = JSON.parse(localStorage.getItem("user"));
+    console.log(userLocalStorage);
+
+    try {
+      if (userLocalStorage.tipo == "C") {
+      } else {
+        alert("Não pode acessar essa página");
+        navigate("/central");
+      }
+    } catch (e) {
+      alert("Não pode acessar essa página");
+      navigate("/central");
+    }
+  }, []);
+
   return (
     <div>
       <NavbarC perf={true} />

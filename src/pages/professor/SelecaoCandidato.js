@@ -12,15 +12,15 @@ export default function SelecaoCandidato() {
       if (userLocalStorage.tipo == "P") {
       } else {
         alert("Não pode acessar essa página");
-        navgate("/");
+        navigate("/central");
       }
     } catch (e) {
       alert("Não pode acessar essa página");
-      navgate("/");
+      navigate("/central");
     }
   }, []);
 
-  const navgate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div>

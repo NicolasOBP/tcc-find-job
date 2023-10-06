@@ -40,11 +40,11 @@ export default function PerfilEmpre() {
         setDesc(userLocalStorage.descE);
       } else {
         alert("Não pode acessar essa página");
-        navigate("/");
+        navigate("/central");
       }
     } catch (e) {
       alert("Não pode acessar essa página");
-      navigate("/");
+      navigate("/central");
     }
   }, []);
 

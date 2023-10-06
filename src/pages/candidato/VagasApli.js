@@ -28,11 +28,11 @@ export default function VagasApli() {
         getVaga(userLocalStorage);
       } else {
         alert("Não pode acessar essa página");
-        navigate("/");
+        navigate("/central");
       }
     } catch (e) {
       alert("Não pode acessar essa página");
-      navigate("/");
+      navigate("/central");
     }
   }, [atualiza]);
 

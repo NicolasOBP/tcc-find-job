@@ -50,11 +50,11 @@ export default function CadVagas() {
         getDadosM();
       } else {
         alert("Não pode acessar essa página");
-        navigate("/");
+        navigate("/central");
       }
     } catch (e) {
       alert("Não pode acessar essa página");
-      navigate("/");
+      navigate("/central");
     }
   }, []);
 

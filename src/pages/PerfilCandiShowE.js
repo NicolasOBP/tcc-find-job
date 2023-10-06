@@ -52,11 +52,11 @@ export default function PerfilCandiShowE() {
         });
       } else {
         alert("Não pode acessar essa página no momento");
-        navigate("/");
+        navigate("/central");
       }
     } catch (e) {
       alert("Não pode acessar essa página no momento");
-      navigate("/");
+      navigate("/central");
     }
   }
 

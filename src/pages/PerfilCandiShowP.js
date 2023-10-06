@@ -39,11 +39,11 @@ export default function PerfilCandiShowP() {
         return docSnap.data();
       } else {
         alert("Não pode acessar essa página no momento");
-        navigate("/");
+        navigate("/central");
       }
     } catch (e) {
       alert("Não pode acessar essa página no momento");
-      navigate("/");
+      navigate("/central");
     }
   }
 
