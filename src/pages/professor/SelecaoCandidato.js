@@ -9,7 +9,7 @@ export default function SelecaoCandidato() {
     console.log(userLocalStorage);
 
     try {
-      if (userLocalStorage.tipo === "P") {
+      if (userLocalStorage.tipo == "P") {
       } else {
         alert("Não pode acessar essa página");
         navgate("/");

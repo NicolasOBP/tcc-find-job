@@ -251,13 +251,13 @@ export default function CadProfe() {
   async function cad(ev) {
     ev.preventDefault();
     if (
-      nomeP === "" ||
-      emailP === "" ||
-      senhaP === "" ||
-      telP === "" ||
-      cpfP === "" ||
-      dataP === "" ||
-      genP === ""
+      nomeP == "" ||
+      emailP == "" ||
+      senhaP == "" ||
+      telP == "" ||
+      cpfP == "" ||
+      dataP == "" ||
+      genP == ""
     ) {
       setContModal("Preencha todos os campos");
       setShowBtn(true);
@@ -266,7 +266,7 @@ export default function CadProfe() {
       if (senhaP == confsenhaP) {
         try {
           const dupli = await verificaCPF();
-          if (dupli === false) {
+          if (dupli == false) {
             createUserWithEmailAndPassword(auth, emailP, senhaP)
               .then((userCredential) => {
                 // Signed in

@@ -48,7 +48,7 @@ export default function PerfilCandidato() {
     console.log(userLocalStorage);
 
     try {
-      if (userLocalStorage.tipo === "C") {
+      if (userLocalStorage.tipo == "C") {
         const cole = collection(
           db,
           "tb01_candidato/" + userLocalStorage.uid + "/comentario"

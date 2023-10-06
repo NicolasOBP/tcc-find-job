@@ -95,7 +95,7 @@ export default function NavbarC(props) {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) =>
-                      item.name === "Cadastrar/Atualizar currículo" ? (
+                      item.name == "Cadastrar/Atualizar currículo" ? (
                         <button
                           onClick={() => setModalCu(true)}
                           key={item.name}

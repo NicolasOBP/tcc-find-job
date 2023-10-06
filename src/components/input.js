@@ -37,7 +37,7 @@ export function Input2(props) {
           type={showPass ? "text" : props.tipo}
           placeholder={props.placeh}
         />
-        {props.tipo === "password" ? (
+        {props.tipo == "password" ? (
           showPass ? (
             <AiFillEyeInvisible onClick={() => setShowPass(false)} size={30} />
           ) : (

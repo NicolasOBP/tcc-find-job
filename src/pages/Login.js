@@ -29,7 +29,7 @@ export default function Login() {
     console.log(userLocalStorage);
 
     if (userLocalStorage) {
-      if (userLocalStorage.tipo === "E") {
+      if (userLocalStorage.tipo == "E") {
         setContModal("Bem vindo de volta " + userLocalStorage.nomeE);
         setShowBtn(false);
         setModal(true);
@@ -38,7 +38,7 @@ export default function Login() {
           navigate("/perfil-empresa");
         }, 1000);
       } else {
-        if (userLocalStorage.tipo === "P") {
+        if (userLocalStorage.tipo == "P") {
           setContModal(
             "Bem vindo de volta " +
               userLocalStorage.nomeP.split(" ").slice(0, 1)
@@ -51,7 +51,7 @@ export default function Login() {
             navigate("/perfil-professor");
           }, 1000);
         } else {
-          if (userLocalStorage.tipo === "C") {
+          if (userLocalStorage.tipo == "C") {
             setContModal(
               "Bem vindo de volta " +
                 userLocalStorage.nomeC.split(" ").slice(0, 1)
@@ -285,7 +285,7 @@ export default function Login() {
   async function getDadosE(uid) {
     const docRef = doc(db, "tb03_empresa", uid);
     const docSnap = await getDoc(docRef);
-    if (docSnap.exists() === true) {
+    if (docSnap.exists() == true) {
       setDados(docSnap.data());
       localStorage.setItem(
         "user",
@@ -298,7 +298,7 @@ export default function Login() {
   async function getDadosP(uid) {
     const docRef = doc(db, "tb08_professor", uid);
     const docSnap = await getDoc(docRef);
-    if (docSnap.exists() === true) {
+    if (docSnap.exists() == true) {
       setDados(docSnap.data());
       localStorage.setItem("user", JSON.stringify(docSnap.data()));
 

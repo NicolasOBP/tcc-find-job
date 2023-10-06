@@ -45,7 +45,7 @@ export default function CadVagas() {
     console.log(userLocalStorage);
 
     try {
-      if (userLocalStorage.tipo === "E") {
+      if (userLocalStorage.tipo == "E") {
         getDadosA();
         getDadosM();
       } else {
@@ -99,18 +99,18 @@ export default function CadVagas() {
 
   async function cadV() {
     if (
-      tituloV === "" ||
-      modeloV === "" ||
-      numeroV === "" ||
-      benefV === "" ||
-      localV === "" ||
-      descV === "" ||
-      areaV === "" ||
-      cargaI === "" ||
-      cargaF === "" ||
-      sal === "" ||
-      reqV === "" ||
-      imgV === ""
+      tituloV == "" ||
+      modeloV == "" ||
+      numeroV == "" ||
+      benefV == "" ||
+      localV == "" ||
+      descV == "" ||
+      areaV == "" ||
+      cargaI == "" ||
+      cargaF == "" ||
+      sal == "" ||
+      reqV == "" ||
+      imgV == ""
     ) {
       setContModal("Preencha todos os campos");
       setShowBtn(true);
@@ -154,18 +154,18 @@ export default function CadVagas() {
   }
   async function atuaV() {
     if (
-      tituloV === "" ||
-      modeloV === "" ||
-      numeroV === "" ||
-      benefV === "" ||
-      localV === "" ||
-      descV === "" ||
-      areaV === "" ||
-      cargaI === "" ||
-      cargaF === "" ||
-      sal === "" ||
-      reqV === "" ||
-      imgV === ""
+      tituloV == "" ||
+      modeloV == "" ||
+      numeroV == "" ||
+      benefV == "" ||
+      localV == "" ||
+      descV == "" ||
+      areaV == "" ||
+      cargaI == "" ||
+      cargaF == "" ||
+      sal == "" ||
+      reqV == "" ||
+      imgV == ""
     ) {
       setContModal("Preencha todos os campos");
       setShowBtn(true);

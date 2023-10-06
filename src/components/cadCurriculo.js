@@ -48,7 +48,7 @@ export default function Cadcurriculo(props) {
 
   async function enviaF() {
     console.log(dados);
-    if (arq === "") {
+    if (arq == "") {
       setContModal("Escolha um arquivo");
       setShowBtn(true);
       setModal1(true);

@@ -9,7 +9,7 @@ export default function Home() {
     console.log(userLocalStorage);
 
     try {
-      if (userLocalStorage.tipo === "C") {
+      if (userLocalStorage.tipo == "C") {
       } else {
         alert("Não pode acessar essa página");
         navigate("/");

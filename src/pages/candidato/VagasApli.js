@@ -24,7 +24,7 @@ export default function VagasApli() {
     console.log(userLocalStorage);
 
     try {
-      if (userLocalStorage.tipo === "C") {
+      if (userLocalStorage.tipo == "C") {
         getVaga(userLocalStorage);
       } else {
         alert("Não pode acessar essa página");

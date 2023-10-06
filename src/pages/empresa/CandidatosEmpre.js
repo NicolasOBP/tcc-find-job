@@ -8,7 +8,7 @@ export default function CandidatosEmpre() {
     const userLocalStorage = JSON.parse(localStorage.getItem("user"));
 
     try {
-      if (userLocalStorage.tipo === "E") {
+      if (userLocalStorage.tipo == "E") {
       } else {
         alert("Não pode acessar essa página");
         navigate("/");

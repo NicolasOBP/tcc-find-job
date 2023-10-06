@@ -33,7 +33,7 @@ export default function PerfilEmpre() {
     console.log(userLocalStorage);
 
     try {
-      if (userLocalStorage.tipo === "E") {
+      if (userLocalStorage.tipo == "E") {
         setTel(userLocalStorage.telE);
         setEmail(userLocalStorage.emailE);
         setEnde(userLocalStorage.ende);

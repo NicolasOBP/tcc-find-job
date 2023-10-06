@@ -33,7 +33,7 @@ export default function AdComentario(props) {
   }
 
   async function adComent() {
-    if (habili.length === 0 || coment === "") {
+    if (habili.length == 0 || coment == "") {
       console.log(habili);
       setContModal("Informação faltando");
       setShowBtn(true);

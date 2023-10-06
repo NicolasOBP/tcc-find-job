@@ -34,7 +34,7 @@ export default function PerfilProfessor() {
     console.log(userLocalStorage);
 
     try {
-      if (userLocalStorage.tipo === "P") {
+      if (userLocalStorage.tipo == "P") {
         setTel(userLocalStorage.telP);
         setEmail(userLocalStorage.emailP);
       } else {

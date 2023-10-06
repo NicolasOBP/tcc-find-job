@@ -9,7 +9,7 @@ export default function SuasV() {
     console.log(userLocalStorage);
 
     try {
-      if (userLocalStorage.tipo === "E") {
+      if (userLocalStorage.tipo == "E") {
       } else {
         alert("Não pode acessar essa página");
         navigate("/");

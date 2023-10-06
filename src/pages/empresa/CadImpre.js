@@ -267,14 +267,14 @@ export default function CadImpre() {
   async function cad(ev) {
     ev.preventDefault();
     if (
-      nomeE === "" ||
-      emailE === "" ||
-      senhaE === "" ||
+      nomeE == "" ||
+      emailE == "" ||
+      senhaE == "" ||
       telE.length < 15 ||
       cnpj.length < 19 ||
-      area === "" ||
-      imgV === "" ||
-      descE === ""
+      area == "" ||
+      imgV == "" ||
+      descE == ""
     ) {
       setContModal("Preencha todos os campos");
       setShowBtn(true);
@@ -283,7 +283,7 @@ export default function CadImpre() {
       if (senhaE == confsenhaE) {
         try {
           const dupli = await verificaCNPJ();
-          if (dupli === false) {
+          if (dupli == false) {
             const imageURl = await cadImg();
             createUserWithEmailAndPassword(auth, emailE, senhaE)
               .then((userCredential) => {
