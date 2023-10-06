@@ -36,10 +36,17 @@ export default function SelecCad() {
             Professor
           </Link>
 
-          <p className="text-center text-lg font-bold text-black-600 mb-4">
+          <p className="text-center text-lg font-bold text-black-600">
             Já tem cadastro?{" "}
-            <Link to={"/"} className="font-bold leading-3 textcolor">
+            <Link to={"/"} className="font-bold textcolor">
               Volte para o Login.
+            </Link>
+          </p>
+
+          <p className="text-center text-lg font-bold text-black-600">
+            Clicou sem querer?{" "}
+            <Link to={"/central"} className="font-bold textcolor">
+              Volte para a Central.
             </Link>
           </p>
 
