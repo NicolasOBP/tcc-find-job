@@ -9,6 +9,7 @@ export default function DadosProvider({ children }) {
   const [dadosCandi, setDadosCandi] = useState({ a: "s" });
   const [filter, setFilter] = useState([]);
   const [selecFilter, setSelecFilter] = useState([]);
+  const [filternome, setFilternome] = useState("");
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -29,6 +30,8 @@ export default function DadosProvider({ children }) {
         setFilter,
         selecFilter,
         setSelecFilter,
+        filternome,
+        setFilternome,
       }}
     >
       {children}

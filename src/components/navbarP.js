@@ -23,7 +23,9 @@ export default function NavbarP(props) {
   const { selecFilter } = useContext(Dados);
   const { filter } = useContext(Dados);
   const { dados } = useContext(Dados);
-  console.log(filter);
+
+  const { filternome } = useContext(Dados);
+  const { setFilternome } = useContext(Dados);
 
   const navigate = useNavigate();
 
@@ -43,6 +45,11 @@ export default function NavbarP(props) {
       setModal(false);
       navigate("/central");
     }, 1500);
+  }
+
+  function limpa() {
+    setSelecFilter("");
+    setFilternome("");
   }
 
   return (
@@ -121,6 +128,14 @@ export default function NavbarP(props) {
                 </div>
               ) : (
                 <div className="flex absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 space-between">
+                  <input
+                    placeholder="Pesquisar por nome"
+                    type="text"
+                    className="rounded-xl font-bold border-2 border-blue-900 p-2"
+                    onChange={(ev) => setFilternome(ev.target.value)}
+                    value={filternome}
+                  />
+
                   <Menu as="div" className="relative ml-3">
                     <Menu.Button className="relative flex rounded-xl font-bold border-2 border-blue-900 p-2 text-blue-900 focus:outline-none">
                       <span className="absolute -inset-1.5" />
@@ -150,11 +165,11 @@ export default function NavbarP(props) {
                       )}
                     </Menu.Items>
                   </Menu>
-                  {selecFilter == "" ? (
+                  {selecFilter == "" && filternome == "" ? (
                     <></>
                   ) : (
                     <RiCloseCircleLine
-                      onClick={() => setSelecFilter("")}
+                      onClick={limpa}
                       className="w-10 h-10 text-red-600"
                       style={{ cursor: "pointer" }}
                     />

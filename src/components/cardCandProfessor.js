@@ -3,8 +3,12 @@ import {
   collection,
   getDocs,
   onSnapshot,
+  or,
   query,
   where,
+  startAt,
+  orderBy,
+  endAt
 } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { IoPersonCircleSharp } from "react-icons/io5";
@@ -18,14 +22,14 @@ export default function CardCandProfessor() {
   const cole = collection(db, "tb01_candidato");
 
   const { setFilter } = useContext(Dados);
-  const { filter } = useContext(Dados);
-  console.log(filter);
+  const { filternome } = useContext(Dados);
+  console.log(filternome);
 
   const { selecFilter } = useContext(Dados);
 
   useEffect(() => {
-    selecFilter == "" ? getCandiSF() : getCandiCF();
-  }, [selecFilter]);
+    selecFilter == "" && filternome == "" ? getCandiSF() : getCandiCF();
+  }, [selecFilter, filternome]);
 
   function removerRepeticoes(array) {
     return Array.from(new Set(array));
@@ -35,7 +39,6 @@ export default function CardCandProfessor() {
       let snapshotUsers = [];
       collection?.docs.forEach((d) => snapshotUsers.push(d.data()));
       setDadosC(snapshotUsers);
-      console.log(snapshotUsers);
 
       setFilter(() => {
         const semrepetir = snapshotUsers.map((v) => v.escola);
@@ -47,7 +50,10 @@ export default function CardCandProfessor() {
     let snapshotUsers = [];
     const q = query(
       collection(db, "tb01_candidato"),
-      where("escola", "==", selecFilter)
+      where("escola", "==", selecFilter),
+      orderBy('nomeC'),
+      startAt(filternome),
+      endAt(filternome+'\uf8ff')
     );
 
     const querySnapshot = await getDocs(q);
