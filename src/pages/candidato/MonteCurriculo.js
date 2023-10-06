@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import NavbarC from "../../components/navbar";
 import Videoscurri from "../../components/vídeoscurri";
+import { useNavigate } from "react-router";
 
 export default function MonteCurriculo() {
   useEffect(() => {
@@ -19,6 +20,7 @@ export default function MonteCurriculo() {
     }
   }, []);
 
+  const navigate = useNavigate();
   return (
     <div>
       <NavbarC perf={true} />
