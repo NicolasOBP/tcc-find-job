@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
-import { Input2, Input3 } from "../components/input";
+import { Input1, Input2, Input3 } from "../components/input";
 import { Dados } from "../context/context";
 import InputMask from "react-input-mask";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -102,7 +102,7 @@ export default function PerfilCandiShowE() {
             </button>
           </div>
         </div>
-        <div className="flex flex-wrap p-5 justify-center space-y-4">
+        <div className="flex p-5 justify-center space-y-4">
           <div className="p-5 comentario h-80">
             {dadosComent.length >= 1 ? (
               dadosComent.map((v) => (
@@ -125,16 +125,16 @@ export default function PerfilCandiShowE() {
               </div>
             )}
           </div>
-          <div className="bg-gray-200 rounded-xl flex flex-col shadow-xl h-40">
-            <div className=" p-2 grid grid-cols-1 gap-x-6 sm:grid-cols-6">
-              <Input3
+          <div className="bg-gray-200 rounded-xl flex flex-col shadow-xl h-44">
+            <div className="p-2 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-5">
+              <Input2
                 disa={true}
                 nomeLabel="Nome"
                 tipo="text"
                 get={dadosCandi.nomeC}
               />
 
-              <Input3
+              <Input2
                 disa={true}
                 nomeLabel="Email"
                 tipo="email"
@@ -156,12 +156,29 @@ export default function PerfilCandiShowE() {
                   />
                 </div>
               </div>
-              <Input2
+
+              <Input1
                 disa={true}
                 nomeLabel="Idade"
                 tipo="text"
                 get={calcDate(dadosCandi.dataC)}
               />
+
+              <div className="sm:col-span-2">
+                <label className="block text-md font-bold leading-6 text-black-900">
+                  Link GitHub
+                </label>
+                <div className="mt-2">
+                  <a
+                    rel="noreferrer"
+                    target="_blank"
+                    href={dadosCandi.gitlink}
+                    className="block rounded-md border-0 py-1.5 px-1.5 text-black-900 shadow-sm ring-2 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  >
+                    {dadosCandi.gitlink}
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
