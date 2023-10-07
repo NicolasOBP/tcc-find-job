@@ -279,60 +279,66 @@ export default function CadImpre() {
       setShowBtn(true);
       setModal(true);
     } else {
-      if (senhaE == confsenhaE) {
-        try {
-          const dupli = await verificaCNPJ();
-          if (dupli == false) {
-            const imageURl = await cadImg();
-            createUserWithEmailAndPassword(auth, emailE, senhaE)
-              .then((userCredential) => {
-                // Signed in
-                setContModal("Cadastrado com sucesso");
-                setShowBtn(false);
-                setModal(true);
-
-                const user = userCredential.user;
-
-                setDoc(doc(db, "tb03_empresa", user.uid), {
-                  nomeE,
-                  emailE,
-                  telE,
-                  cnpj,
-                  area,
-                  descE,
-                  ende,
-                  uid: user.uid,
-                  tipo: "E",
-                  logo: imageURl,
-                });
-                setTimeout(() => {
-                  setModal(false);
-                  navigate("/");
-                }, 2000);
-              })
-              .catch((err) => {
-                const errorCode = err.code;
-                let errorMessage = msgErr(errorCode);
-
-                if (errorMessage == null) {
-                  errorMessage = err.message;
-                }
-                setContModal(errorMessage);
-                setShowBtn(true);
-                setModal(true);
-              });
-          } else {
-            setContModal("CNPJ já cadastrado.");
-            setShowBtn(true);
-            setModal(true);
-          }
-        } catch (e) {
-          console.error("Error adding document: ", e);
-        }
-      } else {
-        setContModal("Senhas não se conferem");
+      if (senhaE.length < 7) {
+        setContModal("Senha é muito curta");
         setShowBtn(true);
         setModal(true);
+      } else {
+        if (senhaE == confsenhaE) {
+          try {
+            const dupli = await verificaCNPJ();
+            if (dupli == false) {
+              const imageURl = await cadImg();
+              createUserWithEmailAndPassword(auth, emailE, senhaE)
+                .then((userCredential) => {
+                  // Signed in
+                  setContModal("Cadastrado com sucesso");
+                  setShowBtn(false);
+                  setModal(true);
+
+                  const user = userCredential.user;
+
+                  setDoc(doc(db, "tb03_empresa", user.uid), {
+                    nomeE,
+                    emailE,
+                    telE,
+                    cnpj,
+                    area,
+                    descE,
+                    ende,
+                    uid: user.uid,
+                    tipo: "E",
+                    logo: imageURl,
+                  });
+                  setTimeout(() => {
+                    setModal(false);
+                    navigate("/");
+                  }, 2000);
+                })
+                .catch((err) => {
+                  const errorCode = err.code;
+                  let errorMessage = msgErr(errorCode);
+
+                  if (errorMessage == null) {
+                    errorMessage = err.message;
+                  }
+                  setContModal(errorMessage);
+                  setShowBtn(true);
+                  setModal(true);
+                });
+            } else {
+              setContModal("CNPJ já cadastrado.");
+              setShowBtn(true);
+              setModal(true);
+            }
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
+        } else {
+          setContModal("Senhas não se conferem");
+          setShowBtn(true);
+          setModal(true);
+        }
       }
     }
   }
