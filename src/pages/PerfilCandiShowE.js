@@ -8,14 +8,14 @@ import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase/config";
 import NavbarE from "../components/navbarE";
 import Modal1 from "../components/modals";
+import Nvaga from "../components/nenhumavga";
 
 export default function PerfilCandiShowE() {
   const [modal, setModal] = useState(false);
 
   const [dadosComent, setDadosComent] = useState([]);
 
-  const { dadosCandi } = useContext(Dados);
-  const { setDadosCandi } = useContext(Dados);
+  const { dadosCandi, setDadosCandi } = useContext(Dados);
 
   const location = useLocation();
 
@@ -23,7 +23,6 @@ export default function PerfilCandiShowE() {
     const dadi = getC();
 
     setDadosCandi(dadi);
-    console.log(dadosCandi);
   }, []);
 
   async function getC() {
@@ -32,12 +31,8 @@ export default function PerfilCandiShowE() {
 
       const cole = collection(db, "tb01_candidato/" + uidC + "/comentario");
 
-      console.log(uidC);
-
       const docRef = doc(db, "tb01_candidato", uidC);
       const docSnap = await getDoc(docRef);
-
-      console.log(docSnap.data());
 
       if (docSnap.exists()) {
         setDadosCandi(docSnap.data());
@@ -48,7 +43,6 @@ export default function PerfilCandiShowE() {
           collection?.docs.forEach((d) => snapshotUsers.push(d.data()));
 
           setDadosComent(snapshotUsers);
-          console.log(snapshotUsers);
         });
       } else {
         alert("Não pode acessar essa página no momento");
@@ -120,8 +114,8 @@ export default function PerfilCandiShowE() {
                 </div>
               ))
             ) : (
-              <div>
-                <h1>Nehum Comentário Adicionado</h1>
+              <div className="flex justify-center px-6 py-14 lg:px-8">
+                <Nvaga title={"Sem comentários de professor para esse aluno"} />
               </div>
             )}
           </div>
@@ -164,21 +158,25 @@ export default function PerfilCandiShowE() {
                 get={calcDate(dadosCandi.dataC)}
               />
 
-              <div className="sm:col-span-2">
-                <label className="block text-md font-bold leading-6 text-black-900">
-                  Link GitHub
-                </label>
-                <div className="mt-2">
-                  <a
-                    rel="noreferrer"
-                    target="_blank"
-                    href={dadosCandi.gitlink}
-                    className="block rounded-md border-0 py-1.5 px-1.5 text-black-900 shadow-sm ring-2 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  >
-                    {dadosCandi.gitlink}
-                  </a>
+              {dadosCandi.gitlink ? (
+                <div className="sm:col-span-2">
+                  <label className="block text-md font-bold leading-6 text-black-900">
+                    Link GitHub
+                  </label>
+                  <div className="mt-2">
+                    <a
+                      rel="noreferrer"
+                      target="_blank"
+                      href={dadosCandi.gitlink}
+                      className="block rounded-md border-0 py-1.5 px-1.5 text-black-900 shadow-sm ring-2 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    >
+                      {dadosCandi.gitlink}
+                    </a>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
         </div>

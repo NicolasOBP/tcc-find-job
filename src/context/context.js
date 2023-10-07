@@ -6,7 +6,7 @@ export const Dados = createContext({});
 export default function DadosProvider({ children }) {
   const [dados, setDados] = useState({});
   const [modifica, setModifica] = useState(false);
-  const [dadosCandi, setDadosCandi] = useState({ a: "s" });
+  const [dadosCandi, setDadosCandi] = useState({});
   const [filter, setFilter] = useState([]);
   const [selecFilter, setSelecFilter] = useState([]);
   const [filternome, setFilternome] = useState("");

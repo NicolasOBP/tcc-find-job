@@ -19,12 +19,7 @@ export default function NavbarE(props) {
   const [conteModal, setContModal] = useState("");
   const [showBtn, setShowBtn] = useState(true);
 
-  const { selecFilter } = useContext(Dados);
-  const { setSelecFilter } = useContext(Dados);
-  const { filter } = useContext(Dados);
-  console.log(filter);
-
-  const { dados } = useContext(Dados);
+  const { selecFilter, setSelecFilter, filter, dados } = useContext(Dados);
 
   const navigate = useNavigate();
 

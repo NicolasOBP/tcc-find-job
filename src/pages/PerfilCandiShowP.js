@@ -12,8 +12,7 @@ import { db } from "../firebase/config";
 export default function PerfilCandiShowP() {
   const [modal, setModal] = useState(false);
 
-  const { dadosCandi } = useContext(Dados);
-  const { setDadosCandi } = useContext(Dados);
+  const { dadosCandi, setDadosCandi } = useContext(Dados);
 
   const location = useLocation();
 
@@ -27,12 +26,9 @@ export default function PerfilCandiShowP() {
     try {
       const { uidC } = location.state;
 
-      console.log(uidC);
-
       const docRef = doc(db, "tb01_candidato", uidC);
       const docSnap = await getDoc(docRef);
 
-      console.log(docSnap.data());
       if (docSnap.exists()) {
         setDadosCandi(docSnap.data());
 
@@ -118,21 +114,26 @@ export default function PerfilCandiShowP() {
               tipo="text"
               get={dadosCandi.escola}
             />
-            <div className="sm:col-span-2">
-              <label className="block text-md font-bold leading-6 text-black-900">
-                Link GitHub
-              </label>
-              <div className="mt-2">
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  href={dadosCandi.gitlink}
-                  className="block w-full rounded-md border-0 py-1.5 px-1.5 text-black-900 shadow-sm ring-2 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                >
-                  {dadosCandi.gitlink}
-                </a>
+
+            {dadosCandi.gitlink ? (
+              <div className="sm:col-span-2">
+                <label className="block text-md font-bold leading-6 text-black-900">
+                  Link GitHub
+                </label>
+                <div className="mt-2">
+                  <a
+                    rel="noreferrer"
+                    target="_blank"
+                    href={dadosCandi.gitlink}
+                    className="block w-full rounded-md border-0 py-1.5 px-1.5 text-black-900 shadow-sm ring-2 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  >
+                    {dadosCandi.gitlink}
+                  </a>
+                </div>
               </div>
-            </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

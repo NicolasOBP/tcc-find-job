@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 export default function Home() {
   useEffect(() => {
     const userLocalStorage = JSON.parse(localStorage.getItem("user"));
-    console.log(userLocalStorage);
 
     try {
       if (userLocalStorage.tipo == "C") {

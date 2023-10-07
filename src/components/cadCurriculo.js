@@ -13,8 +13,7 @@ export default function Cadcurriculo(props) {
 
   const [arq, setArq] = useState("");
 
-  const { dados } = useContext(Dados);
-  const { setDados } = useContext(Dados);
+  const { dados, setDados } = useContext(Dados);
 
   async function atualizaDados() {
     const docRef = doc(db, "tb01_candidato", dados.uid);
@@ -47,7 +46,6 @@ export default function Cadcurriculo(props) {
   }
 
   async function enviaF() {
-    console.log(dados);
     if (arq == "") {
       setContModal("Escolha um arquivo");
       setShowBtn(true);

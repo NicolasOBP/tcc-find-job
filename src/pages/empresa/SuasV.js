@@ -6,7 +6,6 @@ import NavbarE from "../../components/navbarE";
 export default function SuasV() {
   useEffect(() => {
     const userLocalStorage = JSON.parse(localStorage.getItem("user"));
-    console.log(userLocalStorage);
 
     try {
       if (userLocalStorage.tipo == "E") {

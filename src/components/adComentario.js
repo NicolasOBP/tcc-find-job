@@ -18,8 +18,7 @@ export default function AdComentario(props) {
 
   const [coment, setComent] = useState("");
 
-  const { dados } = useContext(Dados);
-  const { dadosCandi } = useContext(Dados);
+  const { dados, dadosCandi } = useContext(Dados);
 
   useEffect(() => {
     getDadosC();
@@ -34,7 +33,6 @@ export default function AdComentario(props) {
 
   async function adComent() {
     if (habili.length == 0 || coment == "") {
-      console.log(habili);
       setContModal("Informação faltando");
       setShowBtn(true);
       setModal(true);
@@ -86,7 +84,6 @@ export default function AdComentario(props) {
         setContModal("Erro");
         setShowBtn(true);
         setModal(true);
-        console.log(e);
       }
     }
   }

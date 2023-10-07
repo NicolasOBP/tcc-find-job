@@ -44,11 +44,15 @@ export default function CadCandi() {
   const [dados2, setDados2] = useState([]);
   const [dados3, setDados3] = useState([]);
 
-  const cole = collection(db, "tb11_escolas");
-
   useEffect(() => {
     getDadosC();
     getDadosH();
+    getDadosE();
+  }, []);
+
+  function getDadosE() {
+    const cole = collection(db, "tb11_escolas");
+
     const unsub = onSnapshot(cole, (collection) => {
       let snapshotUsers = [];
 
@@ -58,8 +62,8 @@ export default function CadCandi() {
 
       setDados3(snapshotUsers);
     });
-  }, []);
-  console.log(dados3);
+  }
+
   async function getDadosC() {
     const docRef = doc(db, "tb02_genero", "gen");
     const docSnap = await getDoc(docRef);

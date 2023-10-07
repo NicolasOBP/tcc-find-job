@@ -55,7 +55,6 @@ export default function CadImpre() {
     const q = query(collection(db, "tb03_empresa"), where("cnpj", "==", cnpj));
 
     const querySnapshot = await getDocs(q);
-    console.log(querySnapshot);
     if (querySnapshot.empty) {
       return false;
     } else {

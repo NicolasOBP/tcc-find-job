@@ -5,9 +5,8 @@ import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
 
 export default function Modal1(props) {
-  const { dados } = useContext(Dados);
-  const { setDados } = useContext(Dados);
-
+  const { dados, setDados } = useContext(Dados);
+  
   async function atualizaDados() {
     if (props.prof) {
       const docRef = doc(db, "tb08_professor", dados.uid);

@@ -50,6 +50,7 @@ export function Input2(props) {
     </div>
   );
 }
+
 export function Input1({ set, nomeLabel, disa, placeh, tipo, get, ...rest }) {
   return (
     <div className="sm:col-span-1">

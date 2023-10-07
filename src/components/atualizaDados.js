@@ -8,8 +8,7 @@ import { updateEmail } from "firebase/auth";
 export default function AtualizaDados(props) {
   const [btn, setBtn] = useState(true);
 
-  const { dados } = useContext(Dados);
-  const { setDados } = useContext(Dados);
+  const { dados, setDados } = useContext(Dados);
 
   async function atualizaDados() {
     let docRef = null;
@@ -26,38 +25,33 @@ export default function AtualizaDados(props) {
 
   async function salvaAutera() {
     if (props.candi) {
-      if (props.tel < 15) {
-        props.setC("Dados atualizados estão inválido");
-        props.setM(false);
-      } else {
-        await updateEmail(auth.currentUser, props.email)
-          .then(async () => {
-            // Password reset email sent!
-            await updateDoc(doc(db, "tb01_candidato", dados.uid), {
-              escola: props.escola,
-              telC: props.tel,
-              emailC: props.email,
-              gitlink: props.git
-            });
-
-            setBtn(false);
-            props.setC(
-              "Dados atualizado com sucesso. Caso você tenha mudado seu email, foi enviado para seu email antigo um aviso de alteração"
-            );
-            setTimeout(() => {
-              props.setM(false);
-              setBtn(true);
-            }, 4000);
-
-            atualizaDados();
-          })
-          .catch((err) => {
-            props.setC(
-              "Ops, algum erro ocorreu, bem provável que seja o fato de você ter feito o login a muito, por favo, deslogue e refaça o login"
-            );
-            // ..
+      await updateEmail(auth.currentUser, props.email)
+        .then(async () => {
+          // Password reset email sent!
+          await updateDoc(doc(db, "tb01_candidato", dados.uid), {
+            escola: props.escola,
+            telC: props.tel,
+            emailC: props.email,
+            gitlink: props.git,
           });
-      }
+
+          setBtn(false);
+          props.setC(
+            "Dados atualizado com sucesso. Caso você tenha mudado seu email, foi enviado para seu email antigo um aviso de alteração"
+          );
+          setTimeout(() => {
+            props.setM(false);
+            setBtn(true);
+          }, 4000);
+
+          atualizaDados();
+        })
+        .catch((err) => {
+          props.setC(
+            "Ops, algum erro ocorreu, bem provável que seja o fato de você ter feito o login a muito tempo, por favo, deslogue e refaça o login"
+          );
+          // ..
+        });
     }
 
     if (props.prof) {

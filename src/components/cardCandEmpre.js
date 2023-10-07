@@ -9,9 +9,7 @@ import Nvaga from "./nenhumavga";
 export default function CardCandEmpre() {
   const [dadosV, setDadosV] = useState([]);
 
-  const { setFilter } = useContext(Dados);
-
-  const { selecFilter } = useContext(Dados);
+  const { setFilter, selecFilter } = useContext(Dados);
 
   let snapshotUsers = [];
 
@@ -27,7 +25,6 @@ export default function CardCandEmpre() {
     return Array.from(new Set(array));
   }
   async function getCandiSF(dados) {
-    console.log("passou lá");
     try {
       const q = query(
         collection(db, "tb07_vagasApli"),
@@ -44,15 +41,12 @@ export default function CardCandEmpre() {
         const semrepetir = Object.values(snapshotUsers).map((v) => v.areaCandi);
         return removerRepeticoes(semrepetir.flat());
       });
-
-      console.log(snapshotUsers);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
   }
 
   async function getCandiCF(dados) {
-    console.log("passou aqui");
     const q = query(
       collection(db, "tb07_vagasApli"),
       where("cnpj", "==", dados.cnpj),
@@ -62,10 +56,7 @@ export default function CardCandEmpre() {
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => snapshotUsers.push(doc.data()));
-    console.log(snapshotUsers);
     setDadosV(snapshotUsers);
-
-    console.log("passou aqui dnv");
   }
 
   function calcDate(data) {

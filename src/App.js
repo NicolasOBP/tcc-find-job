@@ -92,7 +92,7 @@ export default function App() {
           <h1 className="text-xl justify-center items-center">
             Essas e outras funcionalidades estão disponíveis em nosso site, não
             perca tempo e{" "}
-            <Link class="text-blue-800 hover:underline" to={"/selecao-usu"}>
+            <Link className="text-blue-800 hover:underline" to={"/selecao-usu"}>
               Cadastre-se já!
             </Link>
           </h1>

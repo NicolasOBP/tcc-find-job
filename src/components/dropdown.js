@@ -25,19 +25,16 @@ export default function Dropdown(props) {
 }
 export function DropBox(props) {
   let i = 0;
-  console.log(props.get);
+
   function handleSelect(v) {
-    console.log(props.get);
     props.set((old) => {
       const alreadyExists = old.includes(v);
 
       if (alreadyExists == true) {
         const index = old.findIndex((valor) => valor == v);
         old.splice(index, 1);
-        console.log(props.get);
         return [...old];
       }
-      console.log(props.get);
       return [...old, v];
     });
   }
@@ -64,27 +61,5 @@ export function DropBox(props) {
         ))}
       </Menu.Items>
     </Menu>
-
-    // {<div className="sm:col-span-1 ">
-    //   <label className="block text-md font-bold leading-6 text-black-900">
-    //     {props.label}
-    //   </label>
-    //   <div className="mt-2">
-    //     <option value={""}>Selecione</option>
-    //     {props.dad.map((v) => (
-    //       <div key={i++} className="flex items-center mb-4">
-    //         <input
-    //           type="checkbox"
-    //           value={v}
-    //           onChange={() => handleSelect(v)}
-    //           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-    //         />
-    //         <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-    //           {v}
-    //         </label>
-    //       </div>
-    //     ))}
-    //   </div>
-    // </div>}
   );
 }

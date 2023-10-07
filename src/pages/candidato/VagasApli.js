@@ -21,7 +21,6 @@ export default function VagasApli() {
 
   useEffect(() => {
     const userLocalStorage = JSON.parse(localStorage.getItem("user"));
-    console.log(userLocalStorage);
 
     try {
       if (userLocalStorage.tipo == "C") {
@@ -53,9 +52,6 @@ export default function VagasApli() {
       );
 
       setDadosV(snapshotUsers);
-
-      console.log(snapshotUsers);
-      console.log(dadosV);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -86,14 +82,13 @@ export default function VagasApli() {
             auta={setAtualiza}
           />
 
-          {dadosV.map((v) => (
-            <table>
-              <tr className="text-xl ">
-                <th className="border-4 border-black">Vaga</th>
-                <th className="border-4 border-black">Área da vaga</th>
-                <th className="border-4 border-black">Excluir</th>
-              </tr>
-
+          <table>
+            <tr className="text-xl ">
+              <th className="border-4 border-black">Vaga</th>
+              <th className="border-4 border-black">Área da vaga</th>
+              <th className="border-4 border-black">Excluir</th>
+            </tr>
+            {dadosV.map((v) => (
               <tr key={i++} className="border-4 border-gray-500">
                 <td className="border-4 border-gray-500 text-center text-lg">
                   {v.tituloV}
@@ -109,8 +104,8 @@ export default function VagasApli() {
                   />
                 </td>
               </tr>
-            </table>
-          ))}
+            ))}
+          </table>
         </div>
       ) : (
         <div className="flex justify-center px-6 py-14 lg:px-8">

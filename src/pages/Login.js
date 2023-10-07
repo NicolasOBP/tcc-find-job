@@ -26,7 +26,6 @@ export default function Login() {
 
   useEffect(() => {
     const userLocalStorage = JSON.parse(localStorage.getItem("user"));
-    console.log(userLocalStorage);
 
     if (userLocalStorage) {
       if (userLocalStorage.tipo == "E") {
@@ -371,11 +370,11 @@ export default function Login() {
         </p>
 
         <p className="text-center text-lg font-bold text-black-600">
-            Clicou sem querer?{" "}
-            <Link to={"/central"} className="font-bold textcolor">
-              Volte para a Central.
-            </Link>
-          </p>
+          Clicou sem querer?{" "}
+          <Link to={"/central"} className="font-bold textcolor">
+            Volte para a Central.
+          </Link>
+        </p>
 
         <p className="text-center text-lg font-bold text-black-600 mb-4">
           <Link

@@ -22,11 +22,7 @@ export default function Vagascards() {
 
   const [dadosV, setDadosV] = useState([]);
 
-  const { dados } = useContext(Dados);
-
-  const { setFilter } = useContext(Dados);
-
-  const { selecFilter } = useContext(Dados);
+  const { dados, setFilter, selecFilter } = useContext(Dados);
 
   const cole = collection(db, "tb04_vaga");
 
@@ -45,8 +41,6 @@ export default function Vagascards() {
         snapshotUsers.push({ ...doc.data(), id: doc.id });
       });
       setDadosV(snapshotUsers);
-
-      console.log(snapshotUsers);
 
       setFilter(() => {
         const semrepetir = snapshotUsers.map((v) => v.areaV);
@@ -67,40 +61,42 @@ export default function Vagascards() {
       snapshotUsers.push({ ...doc.data(), id: doc.id });
     });
     setDadosV(snapshotUsers);
-    console.log(snapshotUsers);
   }
 
   async function enviaCurri(cnpj, empresa, uidEmpre, tituloV, areaV, id) {
-    console.log(id);
-    const docReferencia = doc(db, "tb07_vagasApli", id + dados.uid);
-    const docSnap = await getDoc(docReferencia);
+    if (dados.curriculo) {
+      const docReferencia = doc(db, "tb07_vagasApli", id + dados.uid);
+      const docSnap = await getDoc(docReferencia);
 
-    console.log(docSnap.exists());
+      if (docSnap.exists()) {
+        setContModal("Vaga já enviada");
+        setShowBtn(true);
+        setModal1(true);
+      } else {
+        setDoc(doc(db, "tb07_vagasApli", id + dados.uid), {
+          curriculo: dados.curriculo,
+          cpfCand: dados.cpfC,
+          emailCand: dados.emailC,
+          nomeCand: dados.nomeC,
+          telCand: dados.telC,
+          cnpj,
+          empresa,
+          dataNasc: dados.dataC,
+          uidCand: dados.uid,
+          uidEmpre,
+          tituloV,
+          areaV,
+          areaCandi: dados.areaAtua,
+        });
 
-    if (docSnap.exists()) {
-      setContModal("Vaga já enviada");
-      setShowBtn(true);
-      setModal1(true);
+        setContModal(
+          'Curriculo enviado. Caso clicou sem querer, vá até as "Vagas Aplicadas" e delete a vaga aplicada'
+        );
+        setShowBtn(true);
+        setModal1(true);
+      }
     } else {
-      setDoc(doc(db, "tb07_vagasApli", id + dados.uid), {
-        curriculo: dados.curriculo,
-        cpfCand: dados.cpfC,
-        emailCand: dados.emailC,
-        nomeCand: dados.nomeC,
-        telCand: dados.telC,
-        cnpj,
-        empresa,
-        dataNasc: dados.dataC,
-        uidCand: dados.uid,
-        uidEmpre,
-        tituloV,
-        areaV,
-        areaCandi: dados.areaAtua,
-      });
-
-      setContModal(
-        'Curriculo enviado. Caso clicou sem querer, vá até as "Vagas Aplicadas" e delete a vaga aplicada'
-      );
+      setContModal("Cadastre um currículo primeiro");
       setShowBtn(true);
       setModal1(true);
     }
@@ -109,18 +105,20 @@ export default function Vagascards() {
   return (
     <>
       <Modal1 btn={showbtn} cont={cont} open={modal1} setM={setModal1} />
-      <div className="flex flex-wrap h-70 justify-content-center justify-center">
+      <div className="flex flex-wrap h-70 justify-center">
         {dadosV.length >= 1 ? (
           dadosV.map((v) => (
             <div key={i++} className="p-2">
-              <div className="p-5 flex shadow-xl rounded-xl w-full m-5 h-full max-w-xs max-h-xs grid w-80 border-2  shadow-xl border-gray-300">
-                <img
-                  alt="a"
-                  src={v.imageURl}
-                  className="w-auto h-auto rounded"
-                />
-                <div className="flex flex-col font-bold space-y-2">
-                  <h1 className="text-center mb-4 font-bold">{v.tituloV}</h1>
+              <div className="p-5 flex shadow-xl rounded-xl m-4 h-full grid w-80 border-2 border-gray-300">
+                <div>
+                  <img
+                    alt="a"
+                    src={v.imageURl}
+                    className="w-auto h-auto rounded"
+                  />
+                </div>
+                <div className="space-y-2 texto">
+                  <h1 className="text-center mb-4 font-bold texto">{v.tituloV}</h1>
                   <h2>Salário: R${v.sal},00</h2>
                   <h2>Empresa: {v.empresa}</h2>
                   <h2>Modelo de trabalho: {v.modeloV}</h2>
@@ -128,6 +126,7 @@ export default function Vagascards() {
                   <h2>Número de Vagas: {v.numeroV}</h2>
                   <h2>Requisitso para vaga: {v.reqV}</h2>
                   <h2>Descrição da vaga: {v.descV}</h2>
+                  <h2>Benefícios da vaga: {v.benefV}</h2>
                 </div>
                 <div className="flex align-self-end justify-center items-end">
                   <button

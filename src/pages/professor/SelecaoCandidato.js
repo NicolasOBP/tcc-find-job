@@ -6,7 +6,6 @@ import NavbarP from "../../components/navbarP";
 export default function SelecaoCandidato() {
   useEffect(() => {
     const userLocalStorage = JSON.parse(localStorage.getItem("user"));
-    console.log(userLocalStorage);
 
     try {
       if (userLocalStorage.tipo == "P") {

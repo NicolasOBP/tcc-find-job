@@ -12,8 +12,7 @@ export default function SuasVag() {
   const [modal, setModal] = useState(false);
   const [conteModal, setContModal] = useState("");
 
-  const { setDadosCandi } = useContext(Dados);
-  const { setModifica } = useContext(Dados);
+  const { setDadosCandi, setModifica } = useContext(Dados);
 
   const [atualiza, setAtualiza] = useState(false);
 
@@ -46,9 +45,6 @@ export default function SuasVag() {
       });
 
       setDadosV(snapshotUsers);
-
-      console.log(snapshotUsers);
-      console.log(dadosV);
     } catch (e) {
       console.error("Error adding document: ", e);
     }

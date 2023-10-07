@@ -22,12 +22,7 @@ export default function NavbarC(props) {
   const [conteModal, setContModal] = useState("");
   const [showBtn, setShowBtn] = useState(true);
 
-  const { setSelecFilter } = useContext(Dados);
-  const { selecFilter } = useContext(Dados);
-
-  const { dados } = useContext(Dados);
-  const { filter } = useContext(Dados);
-  console.log(filter);
+  const { setSelecFilter, selecFilter, dados, filter } = useContext(Dados);
 
   const navigate = useNavigate();
 
