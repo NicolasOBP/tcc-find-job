@@ -32,40 +32,48 @@ export default function PerfilCandidato() {
   const [conteModal, setContModal] = useState("");
 
   const [dadosComent, setDadosComent] = useState([]);
-  console.log(dadosComent);
 
-  const { dados } = useContext(Dados);
-  const { setDados } = useContext(Dados);
+  const { dados, setDados } = useContext(Dados);
 
   const [escola, setEscola] = useState(dados.escola);
   const [tel, setTel] = useState(dados.telC);
   const [email, setEmail] = useState(dados.emailC);
-
   const [github, setGitHub] = useState(dados.gitlink);
+
+  const [escolaC, setEscolaC] = useState(dados.escola);
+  const [telC, setTelC] = useState(dados.telC);
+  const [emailC, setEmailC] = useState(dados.emailC);
+  const [githubC, setGitHubC] = useState(dados.gitlink);
+
+  const [dadosescola, setDadosescola] = useState([]);
 
   useEffect(() => {
     const userLocalStorage = JSON.parse(localStorage.getItem("user"));
-    console.log(userLocalStorage);
 
     try {
       if (userLocalStorage.tipo == "C") {
-        const cole = collection(
-          db,
-          "tb01_candidato/" + userLocalStorage.uid + "/comentario"
-        );
-
         setEscola(userLocalStorage.escola);
         setTel(userLocalStorage.telC);
         setEmail(userLocalStorage.emailC);
         setGitHub(userLocalStorage.gitlink);
 
+        setEscolaC(userLocalStorage.escola);
+        setTelC(userLocalStorage.telC);
+        setEmailC(userLocalStorage.emailC);
+        setGitHubC(userLocalStorage.gitlink);
+
+        getDadosE();
+
+        const cole = collection(
+          db,
+          "tb01_candidato/" + userLocalStorage.uid + "/comentario"
+        );
         const unsub = onSnapshot(cole, (collection) => {
           let snapshotUsers = [];
 
           collection?.docs.forEach((d) => snapshotUsers.push(d.data()));
 
           setDadosComent(snapshotUsers);
-          console.log(snapshotUsers);
         });
       } else {
         alert("Não pode acessar essa página");
@@ -79,9 +87,36 @@ export default function PerfilCandidato() {
 
   const navigate = useNavigate();
 
+  function getDadosE() {
+    const cole = collection(db, "tb11_escolas");
+
+    const unsub = onSnapshot(cole, (collection) => {
+      let snapshotUsers = [];
+
+      collection?.docs.forEach((doc) =>
+        snapshotUsers.push({ ...doc.data(), id: doc.id })
+      );
+
+      setDadosescola(snapshotUsers);
+    });
+  }
+
   function salvaAutera() {
-    setContModal("Tem certeza que deseja alterar seus dados?");
-    setModal(true);
+    if (tel.length < 15) {
+      setContModalCu("Número de telefone inválido");
+      setConfDel(false);
+      setShowBtn(true);
+      setModalCu(true);
+    } else {
+      if (github) {
+        setContModal("Tem certeza que deseja alterar seus dados?");
+        setModal(true);
+      } else {
+        setGitHub("");
+        setContModal("Tem certeza que deseja alterar seus dados?");
+        setModal(true);
+      }
+    }
   }
 
   function verifCurri() {
@@ -151,7 +186,6 @@ export default function PerfilCandidato() {
   }
 
   let i = 0;
-  console.log(dados.imageURL);
   return (
     <div>
       <NavbarC logout={true} />
@@ -311,12 +345,37 @@ export default function PerfilCandidato() {
                   />
                 </div>
               </div>
-              <Input3
-                nomeLabel="Escola"
-                tipo="text"
-                set={setEscola}
-                get={escola}
-              />
+
+              <div className="sm:col-span-3">
+                <label className="block text-md font-bold leading-6 text-black-900">
+                  Escola
+                </label>
+                <div className="mt-2">
+                  <select
+                    className="block w-full rounded-md border-0 py-2 px-1.5 text-black-900 shadow-sm ring-2 ring-inset ring-gray-300 placeholder:text-black-900 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    value={escola}
+                    onChange={(ev) => setEscola(ev.target.value)}
+                  >
+                    {dadosescola.map((v) => (
+                      <>
+                        <option
+                          className="bg-blue-300 text-center text-lg font-bold"
+                          value={""}
+                        >
+                          {v.id}
+                        </option>
+                        {Object.values(v).map(
+                          (b) =>
+                            ["ETECs", "Fatecs"].includes(b) == false && (
+                              <option>{b}</option>
+                            )
+                        )}
+                      </>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
               <Input3
                 nomeLabel="Link GitHub"
                 tipo="url"
@@ -325,14 +384,21 @@ export default function PerfilCandidato() {
                 placeh="Adicione o Link do seu GitHub aqui"
               />
             </div>
-            <div className="flex w-full justify-center mt-3">
-              <button
-                onClick={salvaAutera}
-                className="rounded-xl px-2 py-1.5 font-semibold bg-blue-900 text-white shadow-md botao m-5"
-              >
-                Salvar alterações
-              </button>
-            </div>
+            {escolaC != escola ||
+            emailC != email ||
+            githubC != github ||
+            telC != tel ? (
+              <div className="flex w-full justify-center mt-3">
+                <button
+                  onClick={salvaAutera}
+                  className="rounded-xl px-2 py-1.5 font-semibold bg-blue-900 text-white shadow-md botao m-5"
+                >
+                  Salvar alterações
+                </button>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

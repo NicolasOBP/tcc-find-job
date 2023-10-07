@@ -23,20 +23,24 @@ export default function PerfilProfessor() {
   const [conteModalA, setContModalA] = useState("");
   const [showBtn, setShowBtn] = useState(false);
 
-  const { dados } = useContext(Dados);
-  const { setDados } = useContext(Dados);
+  const { dados, setDados } = useContext(Dados);
 
   const [tel, setTel] = useState(dados.telP);
   const [email, setEmail] = useState(dados.emailP);
 
+  const [telC, setTelC] = useState(dados.telP);
+  const [emailC, setEmailC] = useState(dados.emailP);
+
   useEffect(() => {
     const userLocalStorage = JSON.parse(localStorage.getItem("user"));
-    console.log(userLocalStorage);
 
     try {
       if (userLocalStorage.tipo == "P") {
         setTel(userLocalStorage.telP);
         setEmail(userLocalStorage.emailP);
+
+        setTelC(userLocalStorage.telP);
+        setEmailC(userLocalStorage.emailP);
       } else {
         alert("Não pode acessar essa página");
         navigate("/central");
@@ -187,14 +191,18 @@ export default function PerfilProfessor() {
               </div>
             </div>
           </div>
-          <div className="flex w-full justify-center mt-5">
-            <button
-              onClick={salvaAutera}
-              className="rounded-xl px-2 py-1.5 font-semibold bg-blue-900 text-white shadow-md botao m-5"
-            >
-              Salvar alterações
-            </button>
-          </div>
+          {tel != telC || email != emailC ? (
+            <div className="flex w-full justify-center mt-5">
+              <button
+                onClick={salvaAutera}
+                className="rounded-xl px-2 py-1.5 font-semibold bg-blue-900 text-white shadow-md botao m-5"
+              >
+                Salvar alterações
+              </button>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>

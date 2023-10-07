@@ -20,17 +20,20 @@ export default function PerfilEmpre() {
   const [showBtn, setShowBtn] = useState(false);
   const [confDel, setConfDel] = useState(false);
 
-  const { dados } = useContext(Dados);
-  const { setDados } = useContext(Dados);
+  const { dados, setDados } = useContext(Dados);
 
   const [tel, setTel] = useState(dados.telE);
   const [email, setEmail] = useState(dados.emailE);
   const [ende, setEnde] = useState(dados.ende);
   const [desc, setDesc] = useState(dados.descE);
 
+  const [telC, setTelC] = useState(dados.escola);
+  const [emailC, setEmailC] = useState(dados.telC);
+  const [endeC, setEndeC] = useState(dados.emailC);
+  const [descC, setDescC] = useState(dados.gitlink);
+
   useEffect(() => {
     const userLocalStorage = JSON.parse(localStorage.getItem("user"));
-    console.log(userLocalStorage);
 
     try {
       if (userLocalStorage.tipo == "E") {
@@ -38,6 +41,11 @@ export default function PerfilEmpre() {
         setEmail(userLocalStorage.emailE);
         setEnde(userLocalStorage.ende);
         setDesc(userLocalStorage.descE);
+
+        setTelC(userLocalStorage.telE);
+        setEmailC(userLocalStorage.emailE);
+        setEndeC(userLocalStorage.ende);
+        setDescC(userLocalStorage.descE);
       } else {
         alert("Não pode acessar essa página");
         navigate("/central");
@@ -182,14 +190,19 @@ export default function PerfilEmpre() {
               get={desc}
             />
           </div>
-          <div className="flex w-full justify-center mt-5">
-            <button
-              onClick={salvaAutera}
-              className="rounded-xl px-2 py-1.5 font-semibold bg-blue-900 text-white shadow-md botao mb-4"
-            >
-              Salvar alterações
-            </button>
-          </div>
+
+          {endeC != ende || emailC != email || descC != desc || telC != tel ? (
+            <div className="flex w-full justify-center mt-5">
+              <button
+                onClick={salvaAutera}
+                className="rounded-xl px-2 py-1.5 font-semibold bg-blue-900 text-white shadow-md botao mb-4"
+              >
+                Salvar alterações
+              </button>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>
