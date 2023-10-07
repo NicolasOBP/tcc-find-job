@@ -19,13 +19,8 @@ export default function NavbarP(props) {
   const [conteModal, setContModal] = useState("");
   const [showBtn, setShowBtn] = useState(true);
 
-  const { setSelecFilter } = useContext(Dados);
-  const { selecFilter } = useContext(Dados);
-  const { filter } = useContext(Dados);
-  const { dados } = useContext(Dados);
-
-  const { filternome } = useContext(Dados);
-  const { setFilternome } = useContext(Dados);
+  const { setSelecFilter, selecFilter, dados } = useContext(Dados);
+  const { filternome, setFilternome, filter } = useContext(Dados);
 
   const navigate = useNavigate();
 
