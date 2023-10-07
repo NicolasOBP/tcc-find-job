@@ -14,9 +14,7 @@ export default function CadVagas() {
   const [conteModal, setContModal] = useState("");
   const [showBtn, setShowBtn] = useState(true);
 
-  const { dados } = useContext(Dados);
-  const { dadosCandi } = useContext(Dados);
-  const { modifica } = useContext(Dados);
+  const { dados, dadosCandi, modifica, setDadosCandi } = useContext(Dados);
 
   const [tituloV, setTituloV] = useState(dadosCandi.tituloV);
   const [modeloV, setModeloV] = useState(dadosCandi.modeloV);
@@ -42,7 +40,6 @@ export default function CadVagas() {
 
   useEffect(() => {
     const userLocalStorage = JSON.parse(localStorage.getItem("user"));
-    console.log(userLocalStorage);
 
     try {
       if (userLocalStorage.tipo == "E") {
@@ -82,7 +79,6 @@ export default function CadVagas() {
       return;
     }
 
-    console.log("IMGGG => ", Object.hasOwn(imgV, "name"));
     if (imgV.name) {
       const storageRef = ref(storage, `/files/${imgV.name}`);
       setContModal("Carregando");
@@ -116,42 +112,55 @@ export default function CadVagas() {
       setShowBtn(true);
       setModal(true);
     } else {
-      try {
-        const imageURl = await cadImg();
-        await setDoc(doc(db, "tb04_vaga", uuidv4()), {
-          tituloV,
-          modeloV,
-          numeroV,
-          benefV,
-          localV,
-          descV,
-          areaV,
-          cargaI,
-          cargaF,
-          imageURl,
-          sal,
-          cnpj: dados.cnpj,
-          empresa: dados.nomeE,
-          uidEmpre: dados.uid,
-          reqV,
-        });
-        setContModal("Vaga Cadastrada");
-        setShowBtn(false);
-        setModal(true);
-
-        setTimeout(() => {
-          setModal(false);
-          navigate("/perfil-empresa");
-        }, 2000);
-      } catch (e) {
-        setContModal("Erro ao cadastrar vaga");
+      if (
+        tituloV.length >= 40 ||
+        benefV.length >= 80 ||
+        localV.length >= 80 ||
+        descV.length >= 80 ||
+        reqV.length >= 80
+      ) {
+        setContModal("Os textos estão muito longo, tente diminuir um pouco");
         setShowBtn(true);
         setModal(true);
+      } else {
+        try {
+          const imageURl = await cadImg();
+          await setDoc(doc(db, "tb04_vaga", uuidv4()), {
+            tituloV,
+            modeloV,
+            numeroV,
+            benefV,
+            localV,
+            descV,
+            areaV,
+            cargaI,
+            cargaF,
+            imageURl,
+            sal,
+            cnpj: dados.cnpj,
+            empresa: dados.nomeE,
+            uidEmpre: dados.uid,
+            reqV,
+          });
+          setContModal("Vaga Cadastrada");
+          setShowBtn(false);
+          setModal(true);
 
-        console.error("Error adding document: ", e);
+          setTimeout(() => {
+            setModal(false);
+            navigate("/perfil-empresa");
+          }, 2000);
+        } catch (e) {
+          setContModal("Erro ao cadastrar vaga");
+          setShowBtn(true);
+          setModal(true);
+
+          console.error("Error adding document: ", e);
+        }
       }
     }
   }
+
   async function atuaV() {
     if (
       tituloV == "" ||
@@ -171,41 +180,53 @@ export default function CadVagas() {
       setShowBtn(true);
       setModal(true);
     } else {
-      try {
-        const imageURl = await cadImg();
-        await updateDoc(doc(db, "tb04_vaga", dadosCandi.id), {
-          tituloV,
-          modeloV,
-          numeroV,
-          benefV,
-          localV,
-          descV,
-          areaV,
-          cargaI,
-          cargaF,
-          imageURl,
-          sal,
-          cnpj: dados.cnpj,
-          empresa: dados.nomeE,
-          uidEmpre: dados.uid,
-          reqV,
-        });
-        setContModal("Vaga Atualizada");
-        setShowBtn(false);
-        setModal(true);
-
-        setTimeout(() => {
-          setModal(false);
-          navigate("/perfil-empresa");
-        }, 2000);
-      } catch (e) {
-        setContModal("Erro ao atualizar vaga");
+      if (
+        tituloV.length >= 40 ||
+        benefV.length >= 80 ||
+        localV.length >= 80 ||
+        descV.length >= 80 ||
+        reqV.length >= 80
+      ) {
+        setContModal("Os textos estão muito longo, tente diminuir um pouco");
         setShowBtn(true);
         setModal(true);
-        console.log(e);
+      } else {
+        try {
+          const imageURl = await cadImg();
+          await updateDoc(doc(db, "tb04_vaga", dadosCandi.id), {
+            tituloV,
+            modeloV,
+            numeroV,
+            benefV,
+            localV,
+            descV,
+            areaV,
+            cargaI,
+            cargaF,
+            imageURl,
+            sal,
+            cnpj: dados.cnpj,
+            empresa: dados.nomeE,
+            uidEmpre: dados.uid,
+            reqV,
+          });
+          setContModal("Vaga Atualizada");
+          setShowBtn(false);
+          setModal(true);
+
+          setTimeout(() => {
+            setModal(false);
+            navigate("/perfil-empresa");
+          }, 2000);
+        } catch (e) {
+          setContModal("Erro ao atualizar vaga");
+          setShowBtn(true);
+          setModal(true);
+        }
       }
     }
   }
+
   return (
     <div className="space-y-12 p-10 grid h-screen place-items-center">
       <Modal1 btn={showBtn} cont={conteModal} open={modal} setM={setModal} />
@@ -281,14 +302,12 @@ export default function CadVagas() {
             get={cargaI}
             nomeLabel="Carga horária: Início"
             tipo="time"
-            placeh=""
           />
           <Input1
             set={setCargaF}
             get={cargaF}
             nomeLabel="Carga horária: Fim"
             tipo="time"
-            placeh=""
           />
 
           <Input2
@@ -338,6 +357,7 @@ export default function CadVagas() {
           )}
 
           <Link
+            onClick={() => setDadosCandi("")}
             to={"/perfil-empresa"}
             className="rounded-xl w-20 px-2 py-1.5 font-semibold text-white text-center shadow-md botao mb-4"
           >
