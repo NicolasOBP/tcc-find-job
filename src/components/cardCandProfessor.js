@@ -3,12 +3,12 @@ import {
   collection,
   getDocs,
   onSnapshot,
-  or,
   query,
+  or,
   where,
   startAt,
   orderBy,
-  endAt
+  endAt,
 } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { IoPersonCircleSharp } from "react-icons/io5";
@@ -19,13 +19,7 @@ import Nvaga from "./nenhumavga";
 export default function CardCandProfessor() {
   const [dadosC, setDadosC] = useState([]);
 
-  const cole = collection(db, "tb01_candidato");
-
-  const { setFilter } = useContext(Dados);
-  const { filternome } = useContext(Dados);
-  console.log(filternome);
-
-  const { selecFilter } = useContext(Dados);
+  const { setFilter, filternome, selecFilter, setSelecFilter } = useContext(Dados);
 
   useEffect(() => {
     selecFilter == "" && filternome == "" ? getCandiSF() : getCandiCF();
@@ -34,7 +28,10 @@ export default function CardCandProfessor() {
   function removerRepeticoes(array) {
     return Array.from(new Set(array));
   }
+
   function getCandiSF() {
+    const cole = collection(db, "tb01_candidato");
+
     const unsub = onSnapshot(cole, (collection) => {
       let snapshotUsers = [];
       collection?.docs.forEach((d) => snapshotUsers.push(d.data()));
@@ -48,13 +45,25 @@ export default function CardCandProfessor() {
   }
   async function getCandiCF() {
     let snapshotUsers = [];
-    const q = query(
-      collection(db, "tb01_candidato"),
-      where("escola", "==", selecFilter),
-      orderBy('nomeC'),
-      startAt(filternome),
-      endAt(filternome+'\uf8ff')
-    );
+
+    let q = "";
+
+    if (selecFilter != "") {
+      q = query(
+        collection(db, "tb01_candidato"),
+        orderBy("nomeC"),
+        startAt(filternome),
+        endAt(filternome + "\uf8ff"),
+        where("escola", "==", selecFilter)
+      );
+    } else {
+      q = query(
+        collection(db, "tb01_candidato"),
+        orderBy("nomeC"),
+        startAt(filternome),
+        endAt(filternome + "\uf8ff")
+      );
+    }
 
     const querySnapshot = await getDocs(q);
 
