@@ -54,8 +54,14 @@ export default function PerfilProfessor() {
   const navigate = useNavigate();
 
   function salvaAutera() {
-    setContModal("Tem certeza que deseja alterar seus dados?");
-    setModal(true);
+    if (tel.length < 15) {
+      setContModalA("Número de telefone invaido");
+      setShowBtn(true);
+      setModalA(true);
+    } else {
+      setContModal("Tem certeza que deseja altera seus dados?");
+      setModal(true);
+    }
   }
 
   async function atualizaDados() {
