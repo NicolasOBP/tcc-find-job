@@ -115,7 +115,7 @@ export default function NavbarP(props) {
               ) : props.logout ? (
                 <div className="flex absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 space-between">
                   <button
-                    className="rounded-lg bg-red-500 p-1 font-semibold text-md text-purple border border-blue-900 shadow-md"
+                    className="rounded-lg bg-red-500 p-1 font-semibold text-md text-white border border-blue-900 shadow-md"
                     onClick={logout}
                   >
                     Encerrar sessão
