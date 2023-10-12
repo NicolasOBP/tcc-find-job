@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 export function Input3(props) {
-  const isValid = /^[A-Za-zÀ-ÖØ-öø-ÿ ]+$/.test(props.get);
-
   return (
     <div className="sm:col-span-3">
       <label className="block text-md font-bold leading-6 text-black-900">
@@ -19,19 +17,6 @@ export function Input3(props) {
           placeholder={props.placeh}
         />
       </div>
-      {props.nomeLabel == "Nome Completo" ? (
-        props.get ? (
-          !isValid ? (
-            <p className="text-red-500">Não pode conter números</p>
-          ) : (
-            <></>
-          )
-        ) : (
-          <></>
-        )
-      ) : (
-        <></>
-      )}
     </div>
   );
 }

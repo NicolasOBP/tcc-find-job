@@ -250,6 +250,7 @@ export default function CadProfe() {
 
   async function cad(ev) {
     ev.preventDefault();
+    const isValid = /^[A-Za-zÀ-ÖØ-öø-ÿ ]+$/.test(nomeP);
     if (
       nomeP == "" ||
       emailP == "" ||
@@ -262,66 +263,66 @@ export default function CadProfe() {
       setContModal("Preencha todos os campos");
       setShowBtn(true);
       setModal(true);
-    } else {
-      if (senhaP.length < 7) {
-        setContModal("Senha é muito curta");
-        setShowBtn(true);
-        setModal(true);
-      } else {
-        if (senhaP == confsenhaP) {
-          try {
-            const dupli = await verificaCPF();
-            if (dupli == false) {
-              createUserWithEmailAndPassword(auth, emailP, senhaP)
-                .then((userCredential) => {
-                  // Signed in
-                  setContModal("Cadastrado com sucesso");
-                  setShowBtn(false);
-                  setModal(true);
+    } else if (isValid == false) {
+      setContModal("Não pode conter número no nome");
+      setShowBtn(true);
+      setModal(true);
+    } else if (senhaP.length < 7) {
+      setContModal("Senha é muito curta");
+      setShowBtn(true);
+      setModal(true);
+    } else if (senhaP == confsenhaP) {
+      try {
+        const dupli = await verificaCPF();
+        if (dupli == false) {
+          createUserWithEmailAndPassword(auth, emailP, senhaP)
+            .then((userCredential) => {
+              // Signed in
+              setContModal("Cadastrado com sucesso");
+              setShowBtn(false);
+              setModal(true);
 
-                  const user = userCredential.user;
+              const user = userCredential.user;
 
-                  setDoc(doc(db, "tb08_professor", user.uid), {
-                    nomeP,
-                    emailP,
-                    telP,
-                    cpfP,
-                    dataP,
-                    genP,
-                    uid: user.uid,
-                    tipo: "P",
-                  });
+              setDoc(doc(db, "tb08_professor", user.uid), {
+                nomeP,
+                emailP,
+                telP,
+                cpfP,
+                dataP,
+                genP,
+                uid: user.uid,
+                tipo: "P",
+              });
 
-                  setTimeout(() => {
-                    setModal(false);
-                    navigate("/");
-                  }, 2000);
-                })
-                .catch((err) => {
-                  const errorCode = err.code;
-                  let errorMessage = msgErr(errorCode);
+              setTimeout(() => {
+                setModal(false);
+                navigate("/");
+              }, 2000);
+            })
+            .catch((err) => {
+              const errorCode = err.code;
+              let errorMessage = msgErr(errorCode);
 
-                  if (errorMessage == null) {
-                    errorMessage = err.message;
-                  }
-                  setContModal(errorMessage);
-                  setShowBtn(true);
-                  setModal(true);
-                });
-            } else {
-              setContModal("CPF já cadastrado.");
+              if (errorMessage == null) {
+                errorMessage = err.message;
+              }
+              setContModal(errorMessage);
               setShowBtn(true);
               setModal(true);
-            }
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
+            });
         } else {
-          setContModal("Senhas não se conferem");
+          setContModal("CPF já cadastrado.");
           setShowBtn(true);
           setModal(true);
         }
+      } catch (e) {
+        console.error("Error adding document: ", e);
       }
+    } else {
+      setContModal("Senhas não se conferem");
+      setShowBtn(true);
+      setModal(true);
     }
   }
 

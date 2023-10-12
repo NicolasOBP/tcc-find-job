@@ -279,6 +279,9 @@ export default function CadCandi() {
 
   async function cad(ev) {
     ev.preventDefault();
+
+    const isValid = /^[A-Za-zÀ-ÖØ-öø-ÿ ]+$/.test(nomeC);
+
     if (
       nomeC == "" ||
       emailC == "" ||
@@ -293,67 +296,67 @@ export default function CadCandi() {
       setContModal("Preencha todos os campos");
       setShowBtn(true);
       setModal(true);
-    } else {
-      if (senhaC.length < 7) {
-        setContModal("Senha é muito curta");
-        setShowBtn(true);
-        setModal(true);
-      } else {
-        if (senhaC == confsenhaC) {
-          try {
-            const dupli = await verificaCPF();
-            if (dupli == false) {
-              createUserWithEmailAndPassword(auth, emailC, senhaC)
-                .then((userCredential) => {
-                  // Signed in
-                  setContModal("Cadastrado com sucesso");
-                  setShowBtn(false);
-                  setModal(true);
+    } else if (isValid == false) {
+      setContModal("Não pode conter número no nome");
+      setShowBtn(true);
+      setModal(true);
+    } else if (senhaC.length < 7) {
+      setContModal("Senha é muito curta");
+      setShowBtn(true);
+      setModal(true);
+    } else if (senhaC == confsenhaC) {
+      try {
+        const dupli = await verificaCPF();
+        if (dupli == false) {
+          createUserWithEmailAndPassword(auth, emailC, senhaC)
+            .then((userCredential) => {
+              // Signed in
+              setContModal("Cadastrado com sucesso");
+              setShowBtn(false);
+              setModal(true);
 
-                  const user = userCredential.user;
+              const user = userCredential.user;
 
-                  setDoc(doc(db, "tb01_candidato", user.uid), {
-                    nomeC,
-                    emailC,
-                    telC,
-                    cpfC,
-                    dataC,
-                    genC,
-                    uid: user.uid,
-                    tipo: "C",
-                    escola: esco,
-                    areaAtua: area,
-                  });
-                  setTimeout(() => {
-                    setModal(false);
-                    navigate("/");
-                  }, 1500);
-                })
-                .catch((err) => {
-                  const errorCode = err.code;
-                  let errorMessage = msgErr(errorCode);
+              setDoc(doc(db, "tb01_candidato", user.uid), {
+                nomeC,
+                emailC,
+                telC,
+                cpfC,
+                dataC,
+                genC,
+                uid: user.uid,
+                tipo: "C",
+                escola: esco,
+                areaAtua: area,
+              });
+              setTimeout(() => {
+                setModal(false);
+                navigate("/");
+              }, 1500);
+            })
+            .catch((err) => {
+              const errorCode = err.code;
+              let errorMessage = msgErr(errorCode);
 
-                  if (errorMessage == null) {
-                    errorMessage = err.message;
-                  }
-                  setContModal(errorMessage);
-                  setShowBtn(true);
-                  setModal(true);
-                });
-            } else {
-              setContModal("CPF já cadastrado.");
+              if (errorMessage == null) {
+                errorMessage = err.message;
+              }
+              setContModal(errorMessage);
               setShowBtn(true);
               setModal(true);
-            }
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
+            });
         } else {
-          setContModal("Senha não conferem");
+          setContModal("CPF já cadastrado.");
           setShowBtn(true);
           setModal(true);
         }
+      } catch (e) {
+        console.error("Error adding document: ", e);
       }
+    } else {
+      setContModal("Senha não conferem");
+      setShowBtn(true);
+      setModal(true);
     }
   }
   return (
