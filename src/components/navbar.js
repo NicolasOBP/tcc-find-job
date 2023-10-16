@@ -30,7 +30,7 @@ export default function NavbarC(props) {
     { name: "Home", href: "/home", current: true },
     { name: "Vagas Aplicadas", href: "/vagas-aplicadas", current: false },
     {
-      name: "Não sabe montar Currículo? Clique aqui!!",
+      name: "Não sabe montar um currículo? Clique aqui!!",
       href: "/montar-currículo",
       current: false,
     },
