@@ -12,7 +12,7 @@ function NavBar() {
     { name: "Cadastre-se", href: "/selecao-usu", current: true },
     {
       name: "Já tem um cadastro, Logue aqui!",
-      href: "/",
+      href: "/login",
       current: false,
     },
   ];

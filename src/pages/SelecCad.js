@@ -38,14 +38,14 @@ export default function SelecCad() {
 
           <p className="text-center text-lg font-bold text-black-600">
             Já tem cadastro?{" "}
-            <Link to={"/"} className="font-bold textcolor">
+            <Link to={"/login"} className="font-bold textcolor">
               Volte para o Login.
             </Link>
           </p>
 
           <p className="text-center text-lg font-bold text-black-600">
             Clicou sem querer?{" "}
-            <Link to={"/central"} className="font-bold textcolor">
+            <Link to={"/"} className="font-bold textcolor">
               Volte para a Central.
             </Link>
           </p>

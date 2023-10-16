@@ -47,7 +47,7 @@ export default function NavbarC(props) {
 
     setTimeout(() => {
       setModal(false);
-      navigate("/central");
+      navigate("/");
     }, 1500);
   }
 
