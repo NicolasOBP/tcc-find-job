@@ -33,7 +33,7 @@ import App from "./App";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/login",
     element: <Login />,
   },
   {
@@ -101,7 +101,7 @@ const router = createBrowserRouter([
     element: <MonteCurriculo />,
   },
   {
-    path: "/central",
+    path: "/",
     element: <App />,
   },
 ]);
