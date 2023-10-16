@@ -60,7 +60,15 @@ export default function PerfilCandiShowP() {
       <AdComentario open={modal} setM={setModal} />
       <div className="flex h-screen min-h-full flex-1 flex-col items-center lg:px-8 mt-12">
         <div className="flex flex-col overflow-hidden mb-2">
-          <FaUserCircle style={{ width: "15rem", height: "15rem" }} />
+          {dadosCandi.perfilimg ? (
+            <img
+              className="h-60 w-60 rounded-full my-4"
+              src={dadosCandi.perfilimg}
+              alt=""
+            />
+          ) : (
+            <FaUserCircle style={{ width: "15rem", height: "15rem" }} />
+          )}
 
           <div className="flex flex-col justify-center">
             <button
