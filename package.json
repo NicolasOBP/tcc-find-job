@@ -2,7 +2,7 @@
   "name": "tccfindjob",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/central",
+  "homepage": ".",
   "dependencies": {
     "@headlessui/react": "^1.7.16",
     "@heroicons/react": "^2.0.18",
