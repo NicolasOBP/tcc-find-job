@@ -371,7 +371,7 @@ export default function Login() {
 
         <p className="text-center text-lg font-bold text-black-600">
           Clicou sem querer?{" "}
-          <Link to={"/central"} className="font-bold textcolor">
+          <Link to={"/"} className="font-bold textcolor">
             Volte para a Central.
           </Link>
         </p>
