@@ -44,7 +44,7 @@ export function DropBox(props) {
         <span className="absolute -inset-1.5" />
         <span>{props.label}</span>
       </Menu.Button>
-      <Menu.Items className=" absolute h-60 right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none comentario">
+      <Menu.Items className="absolute h-40 right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none comentario">
         {props.dad.map((v) => (
           <div key={i++} className="flex items-center mb-4">
             <input
