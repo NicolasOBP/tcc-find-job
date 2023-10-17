@@ -11,11 +11,11 @@ export default function SelecaoCandidato() {
       if (userLocalStorage.tipo == "P") {
       } else {
         alert("Não pode acessar essa página");
-        navigate("/central");
+        navigate("/");
       }
     } catch (e) {
       alert("Não pode acessar essa página");
-      navigate("/central");
+      navigate("/");
     }
   }, []);
 

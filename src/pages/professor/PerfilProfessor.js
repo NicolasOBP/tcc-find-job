@@ -43,11 +43,11 @@ export default function PerfilProfessor() {
         setEmailC(userLocalStorage.emailP);
       } else {
         alert("Não pode acessar essa página");
-        navigate("/central");
+        navigate("/");
       }
     } catch (e) {
       alert("Não pode acessar essa página");
-      navigate("/central");
+      navigate("/");
     }
   }, []);
 

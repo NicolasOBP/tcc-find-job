@@ -11,11 +11,11 @@ export default function CandidatosEmpre() {
       if (userLocalStorage.tipo == "E") {
       } else {
         alert("Não pode acessar essa página");
-        navigate("/central");
+        navigate("/");
       }
     } catch (e) {
       alert("Não pode acessar essa página");
-      navigate("/central");
+      navigate("/");
     }
   }, []);
 

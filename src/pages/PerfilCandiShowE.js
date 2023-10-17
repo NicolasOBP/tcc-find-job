@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
-import { Input1, Input2, Input3 } from "../components/input";
+import { Input1, Input2 } from "../components/input";
 import { Dados } from "../context/context";
 import InputMask from "react-input-mask";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -46,11 +46,11 @@ export default function PerfilCandiShowE() {
         });
       } else {
         alert("Não pode acessar essa página no momento");
-        navigate("/central");
+        navigate("/");
       }
     } catch (e) {
       alert("Não pode acessar essa página no momento");
-      navigate("/central");
+      navigate("/");
     }
   }
 

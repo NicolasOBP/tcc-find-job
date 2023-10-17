@@ -11,11 +11,11 @@ export default function MonteCurriculo() {
       if (userLocalStorage.tipo == "C") {
       } else {
         alert("Não pode acessar essa página");
-        navigate("/central");
+        navigate("/");
       }
     } catch (e) {
       alert("Não pode acessar essa página");
-      navigate("/central");
+      navigate("/");
     }
   }, []);
 

@@ -297,7 +297,7 @@ export default function CadProfe() {
 
               setTimeout(() => {
                 setModal(false);
-                navigate("/");
+                navigate("/login");
               }, 2000);
             })
             .catch((err) => {
@@ -420,7 +420,7 @@ export default function CadProfe() {
             </button>
             <p className="text-center text-lg font-bold text-black-600 mb-4">
               Já tem cadastro?{" "}
-              <Link to={"/"} className="font-bold leading-3 textcolor">
+              <Link to={"/login"} className="font-bold leading-3 textcolor">
                 Volte para o Login.
               </Link>
             </p>
