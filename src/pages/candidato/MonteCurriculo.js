@@ -23,7 +23,7 @@ export default function MonteCurriculo() {
   return (
     <div>
       <NavbarC perf={true} />
-      <div className="p-10">
+      <div className="p-2">
         <Videoscurri
           texto="A autora Adriana Cubas compartilha neste vídeo dicas e orientações sobre como criar um currículo atraente e eficaz para o mercado de trabalho. Ela aborda tópicos como pretensão salarial, resumo profissional, idiomas e formação acadêmica."
           url={"https://www.youtube.com/embed/tAQCmXvmvAk?si=_lCYKR6ZLzZ3i1Gl"}
