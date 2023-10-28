@@ -412,6 +412,7 @@ export default function CadProfe() {
               nomeLabel="Data de nascimento"
               tipo="date"
               max="2000-01-31"
+              min="1952-01-31"
             />
           </div>
           <div className="flex flex-col items-center justify-center mb-4">
