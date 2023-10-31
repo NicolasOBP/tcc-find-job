@@ -187,7 +187,7 @@ export default function CadVagas() {
         descV.length > 100 ||
         reqV.length > 100
       ) {
-        setContModal("Os textos estão muito longo, tente diminuir um pouco");
+        setContModal("Os textos estão muito longo, tente diminui um pouco");
         setShowBtn(true);
         setModal(true);
       } else {
