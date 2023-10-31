@@ -123,7 +123,7 @@ export default function Vagascards() {
                   </h1>
                   <h2>
                     Salário: R$
-                    {Intl.NumberFormat("pt-BR").format(v.sal)},00
+                    {Intl.NumberFormat("pt-BR").format(v.sal)}
                   </h2>
                   <h2>Empresa: {v.empresa}</h2>
                   <h2>Modelo de trabalho: {v.modeloV}</h2>
