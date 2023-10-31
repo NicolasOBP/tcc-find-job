@@ -118,8 +118,13 @@ export default function Vagascards() {
                   />
                 </div>
                 <div className="space-y-2 texto">
-                  <h1 className="text-center mb-4 font-bold texto">{v.tituloV}</h1>
-                  <h2>Salário: R${v.sal},00</h2>
+                  <h1 className="text-center mb-4 font-bold texto">
+                    {v.tituloV}
+                  </h1>
+                  <h2>
+                    Salário: R$
+                    {Intl.NumberFormat("pt-BR").format(v.sal)},00
+                  </h2>
                   <h2>Empresa: {v.empresa}</h2>
                   <h2>Modelo de trabalho: {v.modeloV}</h2>
                   <h2>Localização: {v.localV}</h2>
