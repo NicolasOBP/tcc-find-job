@@ -113,11 +113,11 @@ export default function CadVagas() {
       setModal(true);
     } else {
       if (
-        tituloV.length >= 40 ||
-        benefV.length >= 80 ||
-        localV.length >= 80 ||
-        descV.length >= 80 ||
-        reqV.length >= 80
+        tituloV.length >= 50 ||
+        benefV.length >= 100 ||
+        localV.length >= 100 ||
+        descV.length >= 100 ||
+        reqV.length >= 100
       ) {
         setContModal("Os textos estão muito longo, tente diminuir um pouco");
         setShowBtn(true);
