@@ -304,7 +304,7 @@ export default function PerfilCandidato() {
                 </div>
               ))
             ) : (
-              <Nvaga title={"Nenhuma professor colocou um comentário ainda"} />
+              <Nvaga title={"Nenhum professor colocou um comentário ainda"} />
             )}
           </div>
           <div className="bg-gray-200 rounded-xl flex flex-col shadow-xl ">
