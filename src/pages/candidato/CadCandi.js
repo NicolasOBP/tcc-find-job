@@ -318,7 +318,7 @@ export default function CadCandi() {
               const user = userCredential.user;
 
               setDoc(doc(db, "tb01_candidato", user.uid), {
-                nomeC,
+                nomeC: nomeC.toUpperCase(),
                 emailC,
                 telC,
                 cpfC,
