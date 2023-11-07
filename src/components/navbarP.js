@@ -106,7 +106,7 @@ export default function NavbarP(props) {
               {props.svaga ? (
                 <div className="flex absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 space-between">
                   <button
-                    onClick={() => navigate("/perfil-professor")}
+                    onClick={() => navigate("/selecao-candidato")}
                     className="rounded-lg p-1 font-semibold text-md text-purple border border-blue-900 shadow-md"
                   >
                     Voltar
