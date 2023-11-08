@@ -19,7 +19,7 @@ import Nvaga from "./nenhumavga";
 export default function CardCandProfessor() {
   const [dadosC, setDadosC] = useState([]);
 
-  const { setFilter, filternome, selecFilter, setSelecFilter } = useContext(Dados);
+  const { setFilter, filternome, selecFilter, dados } = useContext(Dados);
 
   useEffect(() => {
     selecFilter == "" && filternome == "" ? getCandiSF() : getCandiCF();
@@ -119,7 +119,7 @@ export default function CardCandProfessor() {
             <div className="flex align-self-end justify-center items-end">
               <Link
                 to={"/perfil-candidato-mostrar-professor"}
-                state={{ uidC: v.uid }}
+                state={{ uidC: v.uid, uidP: dados.uid }}
                 className="p-3 bg-blue-900 font-bold border rounded-md text-white"
               >
                 Ver candidato

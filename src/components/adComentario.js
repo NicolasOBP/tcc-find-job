@@ -50,8 +50,8 @@ export default function AdComentario(props) {
               habili,
               coment,
               nomeP: dados.nomeP,
-              img: dados.perfilimg,
               uidP: dados.uid,
+              img: dados.perfilimg,
             }
           );
         } else {
@@ -66,6 +66,7 @@ export default function AdComentario(props) {
               habili,
               coment,
               nomeP: dados.nomeP,
+              uidP: dados.uid,
             }
           );
         }
