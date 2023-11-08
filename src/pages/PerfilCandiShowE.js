@@ -71,7 +71,7 @@ export default function PerfilCandiShowE() {
       <Modal1
         open={modal}
         setM={setModal}
-        cont="Gostou desse candidato, entre em contato com ele. Por email ou mensagem"
+        cont="Gostou desse candidato, entre em contato com ele, por email, mensagem ou GitHub."
         btn={true}
       />
       <div className="flex min-h-full flex-1 flex-col items-center lg:px-8 mt-12">
@@ -105,7 +105,15 @@ export default function PerfilCandiShowE() {
                   className="mb-4 p-3 border border-blue-950 rounded-xl shadow-xl"
                 >
                   <div className="flex items-center">
-                    <FaUserCircle style={{ width: "5rem", height: "5rem" }} />
+                    {v.img ? (
+                      <img
+                        className="h-20 w-20 rounded-full mr-2"
+                        src={v.img}
+                        alt=""
+                      />
+                    ) : (
+                      <FaUserCircle style={{ width: "5rem", height: "5rem" }} />
+                    )}
 
                     <h1>Professor: {v.nomeP}</h1>
                   </div>
