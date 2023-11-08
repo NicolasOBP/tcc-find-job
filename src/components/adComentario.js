@@ -51,6 +51,7 @@ export default function AdComentario(props) {
               coment,
               nomeP: dados.nomeP,
               img: dados.perfilimg,
+              uidP: dados.uid,
             }
           );
         } else {
