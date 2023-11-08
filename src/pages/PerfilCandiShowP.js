@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaTrash } from "react-icons/fa";
 import { Input2 } from "../components/input";
 import { Dados } from "../context/context";
 import AdComentario from "../components/adComentario";
@@ -10,17 +10,16 @@ import {
   collection,
   doc,
   getDoc,
-  getDocs,
   query,
   onSnapshot,
   where,
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "../firebase/config";
 
 export default function PerfilCandiShowP() {
   const [modal, setModal] = useState(false);
   const [coment, setComent] = useState([]);
-  console.log(coment);
 
   const { dadosCandi, setDadosCandi } = useContext(Dados);
 
@@ -32,7 +31,6 @@ export default function PerfilCandiShowP() {
     getC(uidC);
   }, []);
 
-  let snapshotUsers = [];
   async function getComents(uidC, uidP) {
     try {
       const cole = query(
@@ -47,13 +45,6 @@ export default function PerfilCandiShowP() {
         });
         setComent(snapshotUsers);
       });
-
-      /*const querySnapshot = await getDocs(cole);
-
-      querySnapshot.forEach((doc) =>
-        snapshotUsers.push({ ...doc.data(), id: doc.id })
-      );
-      setComent(snapshotUsers);*/
     } catch (e) {
       console.log(e);
     }
@@ -88,12 +79,20 @@ export default function PerfilCandiShowP() {
     var age = Math.abs(year - 1970);
     return age;
   }
+
+  async function delComent(id, uidC) {
+    try {
+      await deleteDoc(doc(db, "tb01_candidato/" + uidC + "/comentario", id));
+    } catch (e) {
+      console.log(e);
+    }
+  }
   let i = 0;
   return (
     <div>
       <NavbarP svaga={true} />
       <AdComentario open={modal} setM={setModal} />
-      <div className="flex h-screen min-h-full flex-1 flex-col items-center lg:px-8 mt-12">
+      <div className="flex min-h-full flex-1 flex-col items-center lg:px-8 mt-12">
         <div className="flex flex-col overflow-hidden mb-2">
           {dadosCandi.perfilimg ? (
             <img
@@ -115,14 +114,14 @@ export default function PerfilCandiShowP() {
           </div>
         </div>
         <div className="flex flex-wrap p-5 justify-center space-y-4">
-          <div className="p-5 comentario h-80">
+          <div className="p-5 comentario h-80 ">
             {coment.length >= 1 ? (
               coment.map((v) => (
                 <div
                   key={i++}
                   className="mb-4 p-3 border border-blue-950 rounded-xl shadow-xl"
                 >
-                  <div className="flex items-center">
+                  <div className="flex items-center justify-between">
                     {v.img ? (
                       <img
                         className="h-20 w-20 rounded-full mr-2"
@@ -133,6 +132,15 @@ export default function PerfilCandiShowP() {
                       <FaUserCircle style={{ width: "5rem", height: "5rem" }} />
                     )}
                     <h1>Professor: {v.nomeP}</h1>
+                    <FaTrash
+                      style={{
+                        width: "2rem",
+                        height: "2rem",
+                        cursor: "pointer",
+                      }}
+                      color="red"
+                      onClick={() => delComent(v.id, v.uid)}
+                    />
                   </div>
                   <h3 className="my-2">Comentário: {v.coment}</h3>
                   <h3>Habilidades: {v.habili.map((a) => a + "; ")}</h3>
