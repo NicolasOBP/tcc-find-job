@@ -69,7 +69,7 @@ export default function Vagascards() {
       const docSnap = await getDoc(docReferencia);
 
       if (docSnap.exists()) {
-        setContModal("Currículo já enviada");
+        setContModal("Currículo já enviado");
         setShowBtn(true);
         setModal1(true);
       } else {
