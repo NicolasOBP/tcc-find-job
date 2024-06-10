@@ -23,7 +23,7 @@ export default function App() {
       <div className="p-10">
         <div className="flex justify-center">
           <h1 className="bg-white w-60 rounded-lg text-center text-xl font-bold mb-4 border border-2 border-blue-950">
-            EQUIPE FINDJOB
+            EQUIPE Treinee Finder
           </h1>
         </div>
         <div className="flex justify-evenly opacity-90 bg-slate-50 border-blue-900 p-8 border-2 rounded-xl mb-6 shadow-xl drop-shadow-2xl">
@@ -40,8 +40,8 @@ export default function App() {
 
             <h3>
               {" "}
-              Bem-vindo(a) ao melhor site de busca de emprego! Com este site
-              você que deseja achar um emprego poderá contar com ajuda dos seus
+              Bem-vindo(a) ao melhor site de busca de estágios! Com este site
+              você que deseja achar um estágios poderá contar com ajuda dos seus
               professores para que eles colocaquem algumas de suas habilidades
               para o ajudar a ser contratado!!!{" "}
             </h3>
@@ -55,7 +55,7 @@ export default function App() {
           >
             <h1 className=" text-xl font-bold mb-4">
               Você! Empresa que quer melhorar a sua visibilidade, venha para o
-              FindJob!
+              Treinee Finder!
             </h1>
             <h3>
               Aqui você terá a chance de escolher os melhores candidatos! E com
@@ -96,7 +96,7 @@ export default function App() {
               Cadastre-se já!
             </Link>
           </h1>
-          <img alt="a" className="h-20 w-20 rounded-lg mt-2" src={img1} />
+          <img alt="a" className="h-20 w-50 rounded-lg mt-2" src={img1} />
         </div>
       </div>
     </div>
