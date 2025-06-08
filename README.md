@@ -1,5 +1,5 @@
 # Meu TCC escolar
-Esse site tem como objetivo ajudar os alunos de escoals técnicas a achar um emprego de forma rápida. 
+Esse site tem como objetivo ajudar os alunos de escolas técnicas a achar um emprego de forma rápida. 
 O diferencial nele é a presença dos professores que pode adicionar comentários nos seus alunos.
 
 ## Possíveis Scripts
