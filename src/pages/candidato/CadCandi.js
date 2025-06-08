@@ -499,7 +499,7 @@ export default function CadCandi() {
           </div>
 
           <div className="flex w-full justify-center text-center">
-            <img src={Logo2} style={{ width: 95, borderRadius: 10 }} alt="a" />
+            <img src={Logo2} style={{ width: 75, borderRadius: 10 }} alt="a" />
           </div>
         </div>
       </div>

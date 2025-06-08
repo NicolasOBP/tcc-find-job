@@ -41,7 +41,7 @@ function NavBar() {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <img
-                    className="h-10 w-30 rounded"
+                    className="h-10 w-10 rounded"
                     src={Logo2}
                     alt="Your Company"
                   />

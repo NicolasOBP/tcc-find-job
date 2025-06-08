@@ -385,7 +385,7 @@ export default function Login() {
           </Link>
         </p>
         <div className="flex w-full justify-center text-center">
-          <img src={Logo} style={{ width: 95, borderRadius: 10 }} alt="a" />
+          <img src={Logo} style={{ width: 75, borderRadius: 10 }} alt="a" />
         </div>
       </div>
     </div>
